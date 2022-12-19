@@ -9,14 +9,21 @@ import {
   Text,
   Select,
   Icon,
+  Checkbox,
 } from "@chakra-ui/react";
+import classes from "./invoicetab.module.css";
+import { useNavigate } from "react-router-dom";
 const InvoiceTab = () => {
+  const navigate = useNavigate();
+  const redirectRouteHandler = () => {
+    navigate("/new-invoice");
+  };
   return (
     <Flex
       align="center"
       margin="0 auto"
-      justify="space-evenly"
       width="90%"
+      justify="space-between"
       height="44px"
     >
       <Flex direction="column">
@@ -34,7 +41,6 @@ const InvoiceTab = () => {
       </Flex>
       <Flex justify="flex-end">
         <Select
-          width="85%"
           border="none"
           placeholder="Filter"
           iconColor="rgba(124, 93, 250, 1)"
@@ -43,12 +49,22 @@ const InvoiceTab = () => {
           fontSize="0.75rem"
           lineHeight="0.9rem"
         >
-          <option value="Draft">Draft</option>
-          <option value="Pending">Pending</option>
-          <option value="Paid">Paid</option>
+          <option className={classes["option"]} value="Draft">
+            Draft
+          </option>
+          <option className={classes["option"]} value="Pending">
+            Pending
+          </option>
+          <option className={classes["option"]} value="Paid">
+            Paid
+          </option>
         </Select>
       </Flex>
-      <Flex borderRadius="50%" backgroundColor="#7C5DFA">
+      <Flex
+        onClick={redirectRouteHandler}
+        borderRadius="50%"
+        backgroundColor="#7C5DFA"
+      >
         <Button
           width="90px"
           height="44px"

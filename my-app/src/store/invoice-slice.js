@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 const invoiceSlice = createSlice({
   name: "invoices",
-  initialState: { cartIsVisible: false },
+  initialState: { invoices: [] },
   reducers: {
-    toggle(state) {
-      state.cartIsVisible = !state.cartIsVisible;
+    getInvoices(state, action) {
+      state.invoices = action.payload;
     },
   },
 });
