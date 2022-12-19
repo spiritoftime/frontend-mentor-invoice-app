@@ -75,11 +75,13 @@ const InvoiceTab = () => {
           </Select>
         </Flex>
         <Flex
+          borderRadius="30px"
           onClick={redirectRouteHandler}
-          borderRadius="50%"
           backgroundColor="#7C5DFA"
         >
           <Button
+            justifyContent="flex-end"
+            borderRadius="30px"
             width="90px"
             height="44px"
             variant="solid"
