@@ -13,11 +13,18 @@ import {
 } from "@chakra-ui/react";
 import classes from "./invoicetab.module.css";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { invoiceActions } from "../../store/invoice-slice";
 const InvoiceTab = () => {
+  const { invoices, filteredInvoices, filteredBy } = useSelector(
+    (state) => state.invoice
+  );
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const redirectRouteHandler = () => {
     navigate("/new-invoice");
   };
+
   return (
     <Flex
       align="center"
@@ -36,11 +43,17 @@ const InvoiceTab = () => {
           fontWeight="700"
           lineHeight="0.9rem"
         >
-          7 invoices
+          {filteredBy === ""
+            ? invoices.length
+            : filteredInvoices.length + " " + filteredBy}{" "}
+          invoices
         </Text>
       </Flex>
       <Flex justify="flex-end">
         <Select
+          onChange={(e) => {
+            dispatch(invoiceActions.filterInvoices(e.target.value));
+          }}
           border="none"
           placeholder="Filter"
           iconColor="rgba(124, 93, 250, 1)"

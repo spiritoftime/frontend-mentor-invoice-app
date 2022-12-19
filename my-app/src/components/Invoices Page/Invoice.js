@@ -49,7 +49,7 @@ const Invoice = (props) => {
                 Due {props.paymentDue}
               </Text>
               <Text fontSize="1.25rem" color="white" fontWeight="700">
-                £{props.grandTotal}
+                £ {props.grandTotal.toFixed(2)}
               </Text>
             </Flex>
           </GridItem>
