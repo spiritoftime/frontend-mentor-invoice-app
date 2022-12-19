@@ -14,26 +14,26 @@ import {
 import classes from "./invoice.module.css";
 const Invoice = (props) => {
   return (
-    <Card color="white" margin="0 auto" height="134px" width="90%" bg="#1E2139">
+    <Card color="white" margin="0 auto" width="90%" bg="#1E2139">
       <CardBody>
         <Grid gap="24px" templateColumns="repeat(2,1fr)">
-          <GridItem display="flex" justify="center" alignItems="center">
-            <Text color="rgba(126, 136, 195, 1)">#</Text>
-            <Text
-              fontSize="0.75rem"
-              color="white"
-              fontWeight="700"
-              lineHeight="0.9rem"
-            >
+          <GridItem
+            fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+            display="flex"
+            justify="center"
+            alignItems="center"
+          >
+            <Text color="hashColor">#</Text>
+            <Text color="darkThemeWhite" fontWeight="700" lineHeight="1.4">
               {props.id}
             </Text>
           </GridItem>
-          <GridItem justifySelf="end">
+          <GridItem alignSelf="center" justifySelf="end">
             <Text
-              fontSize="0.75rem"
-              color="white"
+              fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+              color="darkThemeGrey"
               fontWeight="700"
-              lineHeight="0.9rem"
+              lineHeight="1.4"
             >
               {props.clientName}
             </Text>
@@ -41,20 +41,29 @@ const Invoice = (props) => {
           <GridItem>
             <Flex gap="4px" direction="column" justify="space-between">
               <Text
-                fontSize="0.75rem"
-                color="white"
+                fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                color="darkThemeGrey"
                 fontWeight="500"
-                lineHeight="0.9rem"
+                lineHeight="1.4"
               >
                 Due {props.paymentDue}
               </Text>
-              <Text fontSize="1.25rem" color="white" fontWeight="700">
+              <Text
+                fontSize="clamp(1.15rem, 0.9rem + 2vw, 2.4rem)"
+                color="white"
+                fontWeight="700"
+              >
                 £ {props.grandTotal.toFixed(2)}
               </Text>
             </Flex>
           </GridItem>
-          <GridItem colStart={2} colEnd={3}>
-            <Card align="center" className={classes["overlay"]}>
+          <GridItem
+            alignSelf="center"
+            justifySelf="end"
+            colStart={2}
+            colEnd={3}
+          >
+            <Card align="center" width="104px" className={classes["overlay"]}>
               <CardBody display="flex" alignItems="center" gap="3px">
                 <Box
                   backgroundColor="#FF8F00"
@@ -65,7 +74,7 @@ const Invoice = (props) => {
                 <Text
                   fontSize="0.75rem"
                   fontWeight="700"
-                  lineHeight="0.9rem"
+                  lineHeight="1.4"
                   color="#FF8F00"
                 >
                   {props.status}

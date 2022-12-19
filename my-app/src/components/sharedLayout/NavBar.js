@@ -16,7 +16,7 @@ const NavBar = () => {
       justify="space-between"
       backgroundColor="#1E2139"
       as="nav"
-      direction={["row", "column"]}
+      direction="row"
     >
       <Flex
         justify="center"

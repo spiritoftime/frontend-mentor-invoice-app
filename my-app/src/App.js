@@ -4,9 +4,10 @@ import { ChakraProvider } from "@chakra-ui/react";
 import NavBar from "./components/sharedLayout/NavBar";
 import InvoiceTab from "./components/Invoices Page/InvoiceTab";
 import Invoices from "./components/Invoices Page/Invoices";
+import theme from "./chakraUI themes/theme";
 function App() {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <BrowserRouter>
         <NavBar></NavBar>
         <Routes>

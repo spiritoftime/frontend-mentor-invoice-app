@@ -5,8 +5,8 @@ import { Flex } from "@chakra-ui/react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { database } from "../../firestore";
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { invoiceActions } from "../../store/invoice-slice";
+import { useSelector, useDispatch, connect } from "react-redux";
+import { invoiceActions } from "../../redux-store/invoice-slice";
 import { useLocation } from "react-router-dom";
 import Empty from "./Empty";
 import convertSecondsToDate from "../helper-functions/convertSecondsToDate";
@@ -41,11 +41,13 @@ const Invoices = () => {
     };
     getInvoices();
   }, [pathname]);
-  const { invoices, filteredInvoices } = useSelector((state) => state.invoice);
-  if (!isLoading) {
-    if (filteredInvoices.length > 0) displayedInvoices = filteredInvoices;
-    else displayedInvoices = invoices;
-  }
+  const { invoices, filteredInvoices, filteredBy } = useSelector(
+    (state) => state.invoice
+  );
+
+  if (filteredBy) {
+    displayedInvoices = filteredInvoices;
+  } else displayedInvoices = invoices;
 
   return (
     <Flex
@@ -54,7 +56,7 @@ const Invoices = () => {
       direction="column"
       padding="32px 0"
       as="section"
-      bg="#141625"
+      bg="darkThemeBg"
     >
       <InvoiceTab></InvoiceTab>
       {isLoading && <p>Loading....</p>}

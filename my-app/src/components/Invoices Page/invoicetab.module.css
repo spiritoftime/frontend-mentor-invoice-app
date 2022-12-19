@@ -1,6 +1,6 @@
-.option {
+select > option {
   background: #252945 !important;
-  font-weight: 700;
+  font-weight: 700 !important ;
   font-size: 0.75rem;
-  line-height: 1.2;
+  line-height: 1.2 !important;
 }
