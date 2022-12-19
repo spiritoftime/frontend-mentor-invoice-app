@@ -7,5 +7,6 @@ see https://ultimatecourses.com/blog/using-async-await-inside-react-use-effect-h
 (2) Redux is not able to take in non-serializable data (ie. date object from firebase). It is necessary to convert it to a date first before dispatching it into the store.
 
 (3) In js, empty arrays ARE TRUTHY!!
-image.png
+![Capture](https://user-images.githubusercontent.com/98036884/208433326-11e73107-d414-44b0-9613-54899a50ffa7.PNG)
+
 wasted 2hours because i used if(filteredInvoices). This may have worked in python but in js empty arrays are truthy.
