@@ -5,6 +5,7 @@ import NavBar from "./components/sharedLayout/NavBar";
 import InvoiceTab from "./components/Invoices Page/InvoiceTab";
 import Invoices from "./components/Invoices Page/Invoices";
 import theme from "./chakraUI themes/theme";
+import EditInvoice from "./components/Invoice Page/EditInvoice";
 function App() {
   return (
     <ChakraProvider theme={theme}>
@@ -12,6 +13,7 @@ function App() {
         <NavBar></NavBar>
         <Routes>
           <Route path="/" element={<Invoices />} />
+          <Route path="/new-invoice" element={<EditInvoice />} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>
