@@ -22,8 +22,9 @@ const FormInput = ({ label, defaultValue, type }) => {
         height="40px"
         color="darkThemeWhite"
         border="none"
-        bg="#1E2139"
+        bg="darkThemeInput"
         type={type}
+        defaultValue={defaultValue}
       />
     </Box>
   );

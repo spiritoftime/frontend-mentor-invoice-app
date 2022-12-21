@@ -8,6 +8,7 @@ const theme = extendTheme({
     darkThemeGrey: "#888EB0",
     darkThemeWhite: "rgba(255, 255, 255, 1)",
     darkThemeBg: "#141625",
+    darkThemeInput: "#1E2139",
   },
 });
 export default theme;

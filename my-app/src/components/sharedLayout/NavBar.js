@@ -14,7 +14,7 @@ const NavBar = () => {
   return (
     <Stack
       justify="space-between"
-      backgroundColor="#1E2139"
+      backgroundColor="darkThemeInput"
       as="nav"
       direction="row"
     >

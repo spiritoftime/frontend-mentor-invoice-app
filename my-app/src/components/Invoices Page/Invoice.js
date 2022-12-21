@@ -14,7 +14,7 @@ import {
 import classes from "./invoice.module.css";
 const Invoice = (props) => {
   return (
-    <Card color="white" margin="0 auto" width="90%" bg="#1E2139">
+    <Card color="white" margin="0 auto" width="90%" bg="darkThemeInput">
       <CardBody>
         <Grid gap="24px" templateColumns="repeat(2,1fr)">
           <GridItem
