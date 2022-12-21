@@ -12,7 +12,7 @@ const EditInvoice = ({ defaultValues, isEdit }) => {
   } = useForm();
   return (
     <Box bg="darkThemeBg">
-      <Stack direction="column" gap={10} p={6} align="flex-start">
+      <Stack direction="column" gap={10} p={6} align="center">
         <BillFrom></BillFrom>
         <BillTo></BillTo>
         <Stack direction="column">

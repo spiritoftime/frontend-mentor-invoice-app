@@ -11,16 +11,36 @@ const ItemArticle = () => {
       templateColumns="1fr 1.56fr 1fr auto"
     >
       <GridItem colSpan={4}>
-        <FormInput label="Item Name" defaultValue="" type="text"></FormInput>
+        <FormInput
+          color="darkThemeWhite"
+          label="Item Name"
+          defaultValue=""
+          type="text"
+        ></FormInput>
       </GridItem>
       <GridItem>
-        <FormInput label="Qty." defaultValue="" type="number"></FormInput>
+        <FormInput
+          color="darkThemeWhite"
+          label="Qty."
+          defaultValue=""
+          type="number"
+        ></FormInput>
       </GridItem>
       <GridItem>
-        <FormInput label="Price" defaultValue="" type="number"></FormInput>
+        <FormInput
+          color="darkThemeWhite"
+          label="Price"
+          defaultValue=""
+          type="number"
+        ></FormInput>
       </GridItem>
       <GridItem>
-        <FormInput label="Total" defaultValue="" number=""></FormInput>
+        <FormInput
+          color="darkThemeWhite"
+          label="Total"
+          defaultValue=""
+          number=""
+        ></FormInput>
       </GridItem>
       <GridItem alignSelf="center" transform="translateY(20px)">
         <svg width="12.44px" height="16px" xmlns="http://www.w3.org/2000/svg">

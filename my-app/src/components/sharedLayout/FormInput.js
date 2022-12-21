@@ -6,7 +6,7 @@ import {
   Box,
   FormHelperText,
 } from "@chakra-ui/react";
-const FormInput = ({ label, defaultValue, type }) => {
+const FormInput = ({ label, defaultValue, type, color }) => {
   return (
     <Box width="100%">
       <FormLabel
@@ -20,7 +20,7 @@ const FormInput = ({ label, defaultValue, type }) => {
       </FormLabel>
       <Input
         height="40px"
-        color="darkThemeWhite"
+        color={color}
         border="none"
         bg="darkThemeInput"
         type={type}

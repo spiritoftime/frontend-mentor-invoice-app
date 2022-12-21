@@ -3,23 +3,18 @@ import { Select } from "@chakra-ui/react";
 const FormSelect = () => {
   return (
     <Select
+      bg="darkThemeInput"
       border="none"
-      placeholder="Filter"
-      iconColor="rgba(124, 93, 250, 1)"
+      selected="Net 30 Days"
+      iconColor="darkThemeGrey"
       color="darkThemeWhite"
       fontWeight="700"
       fontSize="0.75rem"
       lineHeight="0.9rem"
     >
-      <option className={classes["option"]} value="Draft">
-        Draft
-      </option>
-      <option className={classes["option"]} value="Pending">
-        Pending
-      </option>
-      <option className={classes["option"]} value="Paid">
-        Paid
-      </option>
+      <option value="Net 30 Days">Net 30 Days</option>
+      <option value="Net 60 Days">Net 60 Days</option>
+      <option value="Net 90 Days">Net 90 Days</option>
     </Select>
   );
 };

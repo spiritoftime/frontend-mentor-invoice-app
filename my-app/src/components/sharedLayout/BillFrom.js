@@ -18,16 +18,33 @@ const BillFrom = () => {
             label="Street Address"
             defaultValue=""
             type="text"
+            color="darkThemeWhite"
           ></FormInput>
         </GridItem>
         <GridItem>
-          <FormInput label="City" defaultValue="" type="text"></FormInput>
+          <FormInput
+            color="darkThemeWhite"
+            label="City"
+            defaultValue=""
+            type="text"
+          ></FormInput>
         </GridItem>
         <GridItem>
-          <FormInput label="Post Code" defaultValue="" type="text"></FormInput>
+          <FormInput
+            color="darkThemeWhite"
+            label="Post Code"
+            defaultValue=""
+            type="text"
+          ></FormInput>
         </GridItem>
         <GridItem colSpan={2}>
-          <FormInput label="Country" defaultValue="" type="text"></FormInput>
+          <FormInput
+            color="darkThemeWhite"
+            t
+            label="Country"
+            defaultValue=""
+            type="text"
+          ></FormInput>
         </GridItem>
       </Grid>
     </Box>
