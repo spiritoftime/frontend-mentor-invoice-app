@@ -2,7 +2,7 @@ import React from "react";
 import FormInput from "./FormInput";
 import { Grid, GridItem } from "@chakra-ui/react";
 
-const ItemArticle = ({ id }) => {
+const ItemArticle = ({ id, itemArticles, setItemArticles }) => {
   return (
     <Grid
       alignContent="center"
@@ -48,7 +48,18 @@ const ItemArticle = ({ id }) => {
         ></FormInput>
       </GridItem>
       <GridItem alignSelf="center" transform="translateY(20px)">
-        <svg width="12.44px" height="16px" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          onClick={() => {
+            const articleCopy = [...itemArticles];
+            const articleIndex = articleCopy.indexOf(id);
+            articleCopy.splice(articleIndex, 1);
+
+            setItemArticles(articleCopy);
+          }}
+          width="12.44px"
+          height="16px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
             fill="#888EB0"

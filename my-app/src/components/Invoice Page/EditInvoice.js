@@ -39,7 +39,12 @@ const EditInvoice = ({ defaultValues, isEdit }) => {
             </Text>
             <Stack direction="column" gap={12}>
               {itemArticles.map((itemNumber) => (
-                <ItemArticle key={itemNumber} id={itemNumber}></ItemArticle>
+                <ItemArticle
+                  itemArticles={itemArticles}
+                  setItemArticles={setItemArticles}
+                  key={itemNumber}
+                  id={itemNumber}
+                ></ItemArticle>
               ))}
             </Stack>
           </Stack>
