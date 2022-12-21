@@ -16,6 +16,7 @@ const BillTo = () => {
       <Grid rowGap={6} columnGap={6} templateColumns="repeat(2,1fr)">
         <GridItem colSpan={2}>
           <FormInput
+            objKey="clientName"
             color="darkThemeWhite"
             label="Client's Name"
             defaultValue=""
@@ -24,6 +25,7 @@ const BillTo = () => {
         </GridItem>
         <GridItem colSpan={2}>
           <FormInput
+            objKey="clientEmail"
             color="darkThemeWhite"
             label="Client's Email"
             defaultValue=""
@@ -32,6 +34,7 @@ const BillTo = () => {
         </GridItem>
         <GridItem colSpan={2}>
           <FormInput
+            objKey="billToAddress"
             color="darkThemeWhite"
             label="Street Address"
             defaultValue=""
@@ -40,6 +43,7 @@ const BillTo = () => {
         </GridItem>
         <GridItem>
           <FormInput
+            objKey="billToCity"
             color="darkThemeWhite"
             label="City"
             defaultValue=""
@@ -48,6 +52,7 @@ const BillTo = () => {
         </GridItem>
         <GridItem>
           <FormInput
+            objKey="billToPostCode"
             color="darkThemeWhite"
             label="Post Code"
             defaultValue=""
@@ -56,6 +61,7 @@ const BillTo = () => {
         </GridItem>
         <GridItem colSpan={2}>
           <FormInput
+            objKey="billToCountry"
             color="darkThemeWhite"
             label="Country"
             defaultValue=""
@@ -64,6 +70,7 @@ const BillTo = () => {
         </GridItem>
         <GridItem colSpan={2}>
           <FormInput
+            objKey="date"
             label="Invoice Date"
             defaultValue="2022-12-21"
             color="darkThemeGrey"
@@ -84,6 +91,7 @@ const BillTo = () => {
         </GridItem>
         <GridItem colSpan={2}>
           <FormInput
+            objKey="description"
             color="darkThemeWhite"
             label="Project / Description"
             defaultValue=""

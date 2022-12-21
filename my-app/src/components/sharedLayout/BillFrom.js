@@ -15,6 +15,7 @@ const BillFrom = () => {
       <Grid rowGap={6} columnGap={6} templateColumns="repeat(2,1fr)">
         <GridItem colSpan={2}>
           <FormInput
+            objKey="address"
             label="Street Address"
             defaultValue=""
             type="text"
@@ -23,6 +24,7 @@ const BillFrom = () => {
         </GridItem>
         <GridItem>
           <FormInput
+            objKey="city"
             color="darkThemeWhite"
             label="City"
             defaultValue=""
@@ -31,6 +33,7 @@ const BillFrom = () => {
         </GridItem>
         <GridItem>
           <FormInput
+            objKey="postCode"
             color="darkThemeWhite"
             label="Post Code"
             defaultValue=""
@@ -40,7 +43,7 @@ const BillFrom = () => {
         <GridItem colSpan={2}>
           <FormInput
             color="darkThemeWhite"
-            t
+            objKey="country"
             label="Country"
             defaultValue=""
             type="text"
