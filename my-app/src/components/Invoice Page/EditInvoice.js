@@ -1,22 +1,19 @@
 import React, { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm, FormProvider, useFormContext } from "react-hook-form";
 import { Stack, Box, Button, Text } from "@chakra-ui/react";
 import ItemArticle from "../sharedLayout/ItemArticle";
 import BillFrom from "../sharedLayout/BillFrom";
 import BillTo from "../sharedLayout/BillTo";
 
+export const RegisterContext = React.createContext();
 const EditInvoice = ({ defaultValues, isEdit }) => {
+  const [articles, setArticles] = useState([1]);
   const methods = useForm();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = methods;
-  const [itemArticles, setItemArticles] = useState(["item 1"]);
-  const addItem = () => {
-    const itemNumber = itemArticles.at(-1).split(" ")[1];
-    setItemArticles((prevstate) => [...prevstate, `item ${+itemNumber + 1}`]);
-  };
 
   return (
     <FormProvider {...methods}>
@@ -37,14 +34,17 @@ const EditInvoice = ({ defaultValues, isEdit }) => {
             >
               Item List
             </Text>
-            <Stack direction="column" gap={12}>
-              {itemArticles.map((itemNumber) => (
-                <ItemArticle key={itemNumber} id={itemNumber}></ItemArticle>
-              ))}
-            </Stack>
+            {articles.map((num) => (
+              <ItemArticle></ItemArticle>
+            ))}
           </Stack>
           <Button
-            onClick={addItem}
+            onClick={() =>
+              setArticles((prevstate) => [
+                ...prevstate,
+                `${prevstate.at(-1) + 1}`,
+              ])
+            }
             justifyContent="center"
             borderRadius="30px"
             width="min(100%, 327px)"
