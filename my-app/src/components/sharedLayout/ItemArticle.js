@@ -1,7 +1,8 @@
 import React from "react";
 import FormInput from "./FormInput";
 import { Grid, GridItem } from "@chakra-ui/react";
-const ItemArticle = () => {
+
+const ItemArticle = ({ id }) => {
   return (
     <Grid
       alignContent="center"
@@ -12,6 +13,7 @@ const ItemArticle = () => {
     >
       <GridItem colSpan={4}>
         <FormInput
+          objKey={`${id}.itemName`}
           color="darkThemeWhite"
           label="Item Name"
           defaultValue=""
@@ -20,6 +22,7 @@ const ItemArticle = () => {
       </GridItem>
       <GridItem>
         <FormInput
+          objKey={`${id}.qty`}
           color="darkThemeWhite"
           label="Qty."
           defaultValue=""
@@ -28,6 +31,7 @@ const ItemArticle = () => {
       </GridItem>
       <GridItem>
         <FormInput
+          objKey={`${id}.price`}
           color="darkThemeWhite"
           label="Price"
           defaultValue=""
@@ -36,6 +40,7 @@ const ItemArticle = () => {
       </GridItem>
       <GridItem>
         <FormInput
+          objKey={`${id}.total`}
           color="darkThemeWhite"
           label="Total"
           defaultValue=""

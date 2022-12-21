@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   FormLabel,
   FormErrorMessage,
@@ -6,10 +6,10 @@ import {
   Box,
   FormHelperText,
 } from "@chakra-ui/react";
-import { RegisterContext } from "../Invoice Page/EditInvoice";
+import { useFormContext } from "react-hook-form";
 
 const FormInput = ({ label, defaultValue, type, color, objKey = "hello" }) => {
-  const register = useContext(RegisterContext);
+  const { register } = useFormContext();
 
   return (
     <Box width="100%">

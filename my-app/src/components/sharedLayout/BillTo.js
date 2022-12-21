@@ -1,7 +1,7 @@
 import React from "react";
 import FormInput from "./FormInput";
 import FormSelect from "./FormSelect";
-import { Select, Box, Text, Grid, GridItem, FormLabel } from "@chakra-ui/react";
+import { Box, Text, Grid, GridItem, FormLabel } from "@chakra-ui/react";
 const BillTo = () => {
   return (
     <Box width="100%" display="flex" flexDirection="column" gap={6}>

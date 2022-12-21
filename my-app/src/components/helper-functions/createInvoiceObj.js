@@ -1,5 +1,5 @@
 const createInvoiceObj = () => {
-  return <div></div>;
+  return;
 };
 
 export default createInvoiceObj;
