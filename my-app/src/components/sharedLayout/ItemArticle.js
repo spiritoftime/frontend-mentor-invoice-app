@@ -53,7 +53,6 @@ const ItemArticle = ({ id, itemArticles, setItemArticles }) => {
             const articleCopy = [...itemArticles];
             const articleIndex = articleCopy.indexOf(id);
             articleCopy.splice(articleIndex, 1);
-
             setItemArticles(articleCopy);
           }}
           width="12.44px"

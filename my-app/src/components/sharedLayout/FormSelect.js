@@ -1,8 +1,12 @@
 import React from "react";
 import { Select } from "@chakra-ui/react";
+
+import { useFormContext } from "react-hook-form";
 const FormSelect = ({ objKey }) => {
+  const { register } = useFormContext();
   return (
     <Select
+      {...register("paymentTerms")}
       bg="darkThemeInput"
       border="none"
       selected="Net 30 Days"

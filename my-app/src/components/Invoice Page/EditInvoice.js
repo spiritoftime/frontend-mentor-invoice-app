@@ -4,6 +4,7 @@ import { Stack, Box, Button, Text } from "@chakra-ui/react";
 import ItemArticle from "../sharedLayout/ItemArticle";
 import BillFrom from "../sharedLayout/BillFrom";
 import BillTo from "../sharedLayout/BillTo";
+import { doc, setDoc, Timestamp } from "firebase/firestore";
 
 const EditInvoice = ({ defaultValues, isEdit }) => {
   const methods = useForm();
@@ -21,7 +22,10 @@ const EditInvoice = ({ defaultValues, isEdit }) => {
   return (
     <FormProvider {...methods}>
       <Box
-        onSubmit={handleSubmit((data) => console.log(data))}
+        onSubmit={handleSubmit((data) => {
+          console.log(Timestamp.fromDate(new Date(data.date)));
+          console.log(data);
+        })}
         as="form"
         bg="darkThemeBg"
       >
