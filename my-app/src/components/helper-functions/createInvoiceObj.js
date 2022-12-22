@@ -14,9 +14,18 @@ const calculatePaymentDue = (date, paymentTerms) => {
       return;
   }
 };
+const calculateTotal = (formData) => {
+  formData.reduce((sum, key) => {
+    if (key.includes("item")) {
+      sum += formData[key]["total"];
+      return sum;
+    }
+  }, 0);
+};
 const createInvoiceObj = (formData) => {
-  console.log(Timestamp.fromDate(new Date(formData.date)));
+  const grandTotal = calculateTotal(formData);
   let invoiceObj = {
+    id: "abc123",
     billFrom: {
       addressDetails: {
         address: formData.address,
@@ -42,8 +51,22 @@ const createInvoiceObj = (formData) => {
         description: formData.description,
       },
     },
+    itemList: {
+      items: {
+        grandTotal: grandTotal,
+      },
+    },
   };
   // add items into the obj
+  for (let [key, value] of Object.entries(formData)) {
+    if (key.includes("item")) {
+      invoiceObj.itemList.items[value.itemName] = {
+        qty: value.qty,
+        price: value.price,
+        total: value.total,
+      };
+    }
+  }
 };
 
 export default createInvoiceObj;
