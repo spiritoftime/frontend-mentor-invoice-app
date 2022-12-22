@@ -5,7 +5,7 @@ import { Flex } from "@chakra-ui/react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { database } from "../../firestore";
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch, connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { invoiceActions } from "../../redux-store/invoice-slice";
 import { useLocation } from "react-router-dom";
 import Empty from "./Empty";

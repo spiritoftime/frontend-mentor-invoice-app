@@ -4,9 +4,18 @@ import { Stack, Box, Button, Text } from "@chakra-ui/react";
 import ItemArticle from "../sharedLayout/ItemArticle";
 import BillFrom from "../sharedLayout/BillFrom";
 import BillTo from "../sharedLayout/BillTo";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
-
+import { database } from "../../firestore";
+import { createInvoiceObj } from "../helper-functions/createInvoiceObj";
+import {
+  doc,
+  addDoc,
+  setDoc,
+  deleteDoc,
+  updateDoc,
+  collection,
+} from "firebase/firestore";
 const EditInvoice = ({ defaultValues, isEdit }) => {
+  const collectionRef = collection(database, "invoices");
   const methods = useForm();
   const {
     register,
@@ -23,8 +32,8 @@ const EditInvoice = ({ defaultValues, isEdit }) => {
     <FormProvider {...methods}>
       <Box
         onSubmit={handleSubmit((data) => {
-          console.log(Timestamp.fromDate(new Date(data.date)));
-          console.log(data);
+          const invoiceObj = createInvoiceObj(data);
+          addDoc(collectionRef, invoiceObj);
         })}
         as="form"
         bg="darkThemeBg"
