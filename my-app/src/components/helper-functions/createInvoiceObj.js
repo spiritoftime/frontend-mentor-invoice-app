@@ -1,4 +1,5 @@
 import { Timestamp } from "firebase/firestore";
+import generateID from "./generateID";
 const calculatePaymentDue = (date, paymentTerms) => {
   const dateObj = new Date(date);
   switch (paymentTerms) {
@@ -31,7 +32,7 @@ const calculateTotal = (formData) => {
 export const createInvoiceObj = (formData) => {
   const grandTotal = calculateTotal(formData);
   let invoiceObj = {
-    id: "abc123",
+    id: generateID(),
     billFrom: {
       addressDetails: {
         address: formData.address,
