@@ -10,15 +10,17 @@ import { invoiceActions } from "../../redux-store/invoice-slice";
 import { useLocation } from "react-router-dom";
 import Empty from "./Empty";
 import convertSecondsToDate from "../helper-functions/convertSecondsToDate";
+import useCreateUserDocument from "../custom-hooks/useCreateUserDocument";
 
 let displayedInvoices = [];
 const Invoices = () => {
   const { pathname } = useLocation();
-
+  const uid = useSelector((state) => state.Login.uid);
   const [isLoading, setIsLoading] = useState(false);
 
-  const collectionRef = collection(database, "invoices");
+  const collectionRef = collection(database, "users", uid, "invoices");
   const dispatch = useDispatch();
+  useCreateUserDocument();
   useEffect(() => {
     const getInvoices = async () => {
       setIsLoading(true);
@@ -26,6 +28,11 @@ const Invoices = () => {
         const invoices = data.docs.map((item) => {
           return item.data();
         });
+
+        if (invoices.length === 0) {
+          setIsLoading(false);
+          return;
+        }
         // convert non-serialized data before pushing it to redux
         const cleanedInvoices = invoices.map((invoice) => {
           invoice.billTo.invoice.date = convertSecondsToDate(

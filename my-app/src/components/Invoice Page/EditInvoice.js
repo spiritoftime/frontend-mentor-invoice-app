@@ -15,9 +15,10 @@ import {
   updateDoc,
   collection,
 } from "firebase/firestore";
+import { useSelector } from "react-redux";
 const EditInvoice = ({ defaultValues, isEdit }) => {
-
-  const collectionRef = collection(database, "invoices");
+  const userUID = useSelector((state) => state.Login.uid);
+  const collectionRef = collection(database, "users", userUID, "invoices");
   const methods = useForm();
   const {
     register,

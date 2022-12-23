@@ -11,8 +11,10 @@ import {
 import { useDispatch } from "react-redux";
 import { LoginActions } from "../../redux-store/login-slice";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   let auth = getAuth();
   let googleProvider = new GoogleAuthProvider();
 
@@ -38,6 +40,7 @@ const Login = () => {
                 isLogin: true,
               })
             );
+            navigate("/invoices");
           });
         }}
         justifyContent="center"
