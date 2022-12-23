@@ -10,6 +10,7 @@ import { invoiceActions } from "../../redux-store/invoice-slice";
 import { useLocation } from "react-router-dom";
 import Empty from "./Empty";
 import convertSecondsToDate from "../helper-functions/convertSecondsToDate";
+
 let displayedInvoices = [];
 const Invoices = () => {
   const { pathname } = useLocation();
@@ -41,6 +42,7 @@ const Invoices = () => {
     };
     getInvoices();
   }, [pathname]);
+
   const { invoices, filteredInvoices, filteredBy } = useSelector(
     (state) => state.invoice
   );
