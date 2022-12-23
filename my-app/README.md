@@ -33,13 +33,13 @@ The empty subcollection is also necessary so that when the new user is redirecte
 
 visualisation as follows:
 
-*user document
+* user document
 
-  *invoices (empty at first)
+  * invoices (empty at first)
 
-    *invoice 1
+    * invoice 1
 
-    *invoice 2
+    * invoice 2
 
 edit: so apparently you can have a collectionRef that has not been created! so in my case, i could simply have const collectionRef = collection(database, "users", uid, "invoices");
 
