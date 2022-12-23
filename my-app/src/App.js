@@ -6,13 +6,16 @@ import InvoiceTab from "./components/Invoices Page/InvoiceTab";
 import Invoices from "./components/Invoices Page/Invoices";
 import theme from "./chakraUI themes/theme";
 import EditInvoice from "./components/Invoice Page/EditInvoice";
+import Login from "./components/Login page/Login";
+
 function App() {
   return (
     <ChakraProvider theme={theme}>
       <BrowserRouter>
         <NavBar></NavBar>
         <Routes>
-          <Route path="/" element={<Invoices />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/invoices" element={<Invoices />} />
           <Route path="/new-invoice" element={<EditInvoice />} />
         </Routes>
       </BrowserRouter>
