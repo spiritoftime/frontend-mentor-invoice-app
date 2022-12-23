@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 const invoiceSlice = createSlice({
   name: "invoices",
-  initialState: { invoices: [], filteredInvoices: [], filteredBy: "" },
+  initialState: {
+    invoices: [],
+    filteredInvoices: [],
+    filteredBy: "",
+    queriedInvoice: {},
+  },
   reducers: {
     getInvoices(state, action) {
       state.invoices = action.payload;
@@ -12,6 +17,9 @@ const invoiceSlice = createSlice({
         return invoice.status === action.payload;
       });
       state.filteredBy = action.payload;
+    },
+    queryInvoice(state, action) {
+      state.queriedInvoice = action.payload;
     },
   },
 });

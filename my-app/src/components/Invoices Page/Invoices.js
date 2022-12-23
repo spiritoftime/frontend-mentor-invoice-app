@@ -26,7 +26,7 @@ const Invoices = () => {
       setIsLoading(true);
       onSnapshot(collectionRef, (data) => {
         const invoices = data.docs.map((item) => {
-          return item.data();
+          return { ...item.data(), docId: item.id };
         });
 
         if (invoices.length === 0) {
@@ -73,6 +73,7 @@ const Invoices = () => {
         displayedInvoices.map((invoice) => {
           return (
             <Invoice
+              docId={invoice.docId}
               key={invoice.id}
               id={invoice.id}
               clientEmail={invoice.billTo.clientEmail}

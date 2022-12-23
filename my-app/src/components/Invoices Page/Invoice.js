@@ -12,9 +12,20 @@ import {
   Box,
 } from "@chakra-ui/react";
 import classes from "./invoice.module.css";
+import { useNavigate, useParams } from "react-router-dom";
 const Invoice = (props) => {
+  const navigate = useNavigate();
+
   return (
-    <Card color="white" margin="0 auto" width="90%" bg="darkThemeInput">
+    <Card
+      onClick={() => {
+        navigate(`/invoices/${props.docId}`);
+      }}
+      color="white"
+      margin="0 auto"
+      width="90%"
+      bg="darkThemeInput"
+    >
       <CardBody>
         <Grid gap="24px" templateColumns="repeat(2,1fr)">
           <GridItem
