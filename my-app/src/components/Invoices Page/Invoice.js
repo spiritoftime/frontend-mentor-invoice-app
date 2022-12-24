@@ -11,7 +11,6 @@ import {
   Flex,
   Box,
 } from "@chakra-ui/react";
-import classes from "./invoice.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import StatusBox from "../UI/StatusBox";
 const Invoice = (props) => {

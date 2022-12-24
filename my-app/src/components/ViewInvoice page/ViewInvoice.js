@@ -17,6 +17,8 @@ import {
   Flex,
   Box,
 } from "@chakra-ui/react";
+import StatusBox from "../UI/StatusBox";
+import GobackButton from "../UI/GobackButton";
 const ViewInvoice = () => {
   const dispatch = useDispatch();
   const { invoiceId } = useParams();
@@ -41,18 +43,51 @@ const ViewInvoice = () => {
   const { queriedInvoice } = useSelector((state) => state.invoice);
 
   return (
-    <Flex direction="column" minBlockSize="100vh" bg="darkThemeBg">
-      <Card
-        display="flex"
-        direction="column"
-        color="white"
-        margin="80px auto 0 "
+    <Flex
+      alignItems="flex-start"
+      gap="6px"
+      direction="column"
+      minBlockSize="100vh"
+      bg="darkThemeBg"
+    >
+      <GobackButton></GobackButton>
+      <Flex
+        borderRadius="8px"
+        padding="0 24px"
+        alignItems="center"
+        color="darkThemeGrey"
+        margin="32px auto 0 "
         height="95px"
         width="90%"
         bg="darkThemeInput"
+        justify="space-between"
       >
-        <Text>Status</Text>
-      </Card>
+        <Text
+          width="fit-content"
+          fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+          color="darkThemeGrey"
+          fontWeight="500"
+          lineHeight="1.4"
+        >
+          Status
+        </Text>
+        <StatusBox
+          width="fit-content"
+          status={queriedInvoice.status}
+          color="#FF8F00"
+        ></StatusBox>
+      </Flex>
+      <Flex
+        height="700px"
+        borderRadius="8px"
+        padding="0 24px"
+        alignItems="center"
+        color="darkThemeGrey"
+        margin="0 auto"
+        width="90%"
+        bg="darkThemeInput"
+        justify="space-between"
+      />
     </Flex>
   );
 };

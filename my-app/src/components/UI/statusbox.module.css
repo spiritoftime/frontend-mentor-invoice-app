@@ -1,6 +1,6 @@
 .overlay {
   position: relative;
-  margin: auto;
+  margin-left: auto;
 }
 .overlay::after {
   position: absolute;
