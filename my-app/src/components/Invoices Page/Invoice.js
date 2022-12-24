@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import classes from "./invoice.module.css";
 import { useNavigate, useParams } from "react-router-dom";
+import StatusBox from "../UI/StatusBox";
 const Invoice = (props) => {
   const navigate = useNavigate();
 
@@ -74,24 +75,7 @@ const Invoice = (props) => {
             colStart={2}
             colEnd={3}
           >
-            <Card align="center" width="104px" className={classes["overlay"]}>
-              <CardBody display="flex" alignItems="center" gap="3px">
-                <Box
-                  backgroundColor="#FF8F00"
-                  width="10px"
-                  height="10px"
-                  borderRadius="50%"
-                ></Box>
-                <Text
-                  fontSize="0.75rem"
-                  fontWeight="700"
-                  lineHeight="1.4"
-                  color="#FF8F00"
-                >
-                  {props.status}
-                </Text>
-              </CardBody>
-            </Card>
+            <StatusBox status={props.status} color="#FF8F00"></StatusBox>
           </GridItem>
         </Grid>
       </CardBody>
