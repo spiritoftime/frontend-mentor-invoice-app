@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getDoc, doc, collection } from "firebase/firestore";
+import { setDoc, getDoc, doc } from "firebase/firestore";
 import { database } from "../../firestore";
 import { useSelector, useDispatch } from "react-redux";
 import { invoiceActions } from "../../redux-store/invoice-slice";
@@ -15,10 +15,10 @@ const ViewInvoice = () => {
   const dispatch = useDispatch();
   const { invoiceId } = useParams();
   const uid = useSelector((state) => state.Login.uid);
+  const docRef = doc(database, "users", uid, "invoices", invoiceId);
   useEffect(() => {
     const queryData = async () => {
       // const queryData = () => {
-      const docRef = doc(database, "users", uid, "invoices", invoiceId);
       const docSnap = await getDoc(docRef);
       const docData = docSnap.data();
       docData.billTo.invoice.date = convertSecondsToDate(
@@ -67,18 +67,21 @@ const ViewInvoice = () => {
         <StatusBox
           width="fit-content"
           status={queriedInvoice.status}
-          color="#FF8F00"
+          color={queriedInvoice.status === "Pending" ? "#FF8F00" : "#33D69F"}
         ></StatusBox>
-        <Flex>
+        <Flex
+          position="absolute"
+          bottom="0"
+          left="0"
+          width="100%"
+          backgroundColor="darkThemeInput"
+          margin="0 auto"
+          justify="center"
+        >
           <ButtonGroup
             justifyContent="space-between"
             gap="8px"
             padding="21px 10px"
-            position="absolute"
-            bottom="0"
-            left="0"
-            width="100%"
-            backgroundColor="darkThemeInput"
           >
             <FooterButton
               onClick={() => {
@@ -88,7 +91,13 @@ const ViewInvoice = () => {
               text="Edit"
             ></FooterButton>
             <FooterButton color="#EC5757" text="Delete"></FooterButton>
-            <FooterButton color="#7C5DFA" text="Mark as Paid"></FooterButton>
+            <FooterButton
+              onClick={() => {
+                setDoc(docRef, { status: "Paid" }, { merge: true });
+              }}
+              color="#7C5DFA"
+              text="Mark as Paid"
+            ></FooterButton>
           </ButtonGroup>
         </Flex>
       </Flex>

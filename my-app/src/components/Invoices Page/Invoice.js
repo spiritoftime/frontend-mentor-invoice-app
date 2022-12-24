@@ -74,7 +74,10 @@ const Invoice = (props) => {
             colStart={2}
             colEnd={3}
           >
-            <StatusBox status={props.status} color="#FF8F00"></StatusBox>
+            <StatusBox
+              status={props.status}
+              color={props.status === "Pending" ? "#FF8F00" : "#33D69F"}
+            ></StatusBox>
           </GridItem>
         </Grid>
       </CardBody>
