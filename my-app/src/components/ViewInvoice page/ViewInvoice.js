@@ -5,7 +5,7 @@ import { database } from "../../firestore";
 import { useSelector, useDispatch } from "react-redux";
 import { invoiceActions } from "../../redux-store/invoice-slice";
 import convertSecondsToDate from "../helper-functions/convertSecondsToDate";
-import { ButtonGroup, Text, Flex } from "@chakra-ui/react";
+import { ButtonGroup, Text, Flex, Grid, GridItem } from "@chakra-ui/react";
 import StatusBox from "../UI/StatusBox";
 import GobackButton from "../UI/GobackButton";
 import FooterButton from "../UI/FooterButton";
@@ -71,7 +71,7 @@ const ViewInvoice = () => {
         ></StatusBox>
         <Flex
           position="absolute"
-          bottom="0"
+          bottom="-56px"
           left="0"
           width="100%"
           backgroundColor="darkThemeInput"
@@ -102,16 +102,71 @@ const ViewInvoice = () => {
         </Flex>
       </Flex>
       <Flex
+        direction="column"
         borderRadius="8px"
         padding="0 24px"
-        alignItems="center"
+        alignItems="start"
         color="darkThemeGrey"
-        margin="0 auto"
+        margin="0 auto 82px"
         width="90%"
         bg="darkThemeInput"
-        justify="space-between"
       >
-        HiQ
+        <Flex direction="column" gap={6}>
+          <Flex direction="column">
+            <Flex direction="column">
+              <Text>#XM9141</Text>
+              <Text>Graphic Design</Text>
+            </Flex>
+            <Flex direction="column">
+              <Text>19 Union Terrace</Text>
+              <Text>London</Text>
+              <Text>E1 3EZ</Text>
+              <Text>United Kingdom</Text>
+            </Flex>
+          </Flex>
+          <Flex gap={6} direction="column">
+            <Grid columnGap={6} rowGap={6} templateColumns={"repeat(2,1fr)"}>
+              <GridItem colSpan={1}>
+                <Text>Invoice Date</Text>
+                <Text>21 Aug 2021</Text>
+              </GridItem>
+              <GridItem rowStart={2}>
+                <Text>Payment Due</Text>
+                <Text>20 Sep 2021</Text>
+              </GridItem>
+              <GridItem rowSpan={2}>
+                <Text>Bill To</Text>
+                <Text>Alex Grim</Text>
+                <Text>84 Church Way</Text>
+                <Text>Bradford</Text>
+                <Text>BD1 9PB</Text>
+                <Text>United Kingdom</Text>
+              </GridItem>
+            </Grid>
+            <Flex direction="column">
+              <Text>Sent to</Text>
+              <Text>alexgrim@mail.com</Text>
+            </Flex>
+          </Flex>
+          <Flex
+            direction="column"
+            borderRadius="8px"
+            alignItems="start"
+            color="darkThemeGrey"
+            margin="0 auto"
+            backgroundColor="rgba(37, 41, 69, 1)"
+          >
+            <Grid>
+              <GridItem>iudakaqedaadsdasdasdasdasadc</GridItem>
+              <GridItem>iudakaqedaadsdasdasdasdasadc</GridItem>
+              <GridItem>iudakaqedaadsdasdasdasdasadc</GridItem>
+              <GridItem>iudakaqedaadsdasdasdasdasadc</GridItem>
+              <GridItem>iudakaqedaadsdasdasdasdasadc</GridItem>
+              <GridItem>iudakaqedaadsdasdasdasdasadc</GridItem>
+              <GridItem>iudakaqedaadsdasdasdasdasadc</GridItem>
+            </Grid>
+          </Flex>
+        </Flex>
       </Flex>
     </Flex>
   );
