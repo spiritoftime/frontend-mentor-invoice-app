@@ -16,6 +16,7 @@ import {
   collection,
 } from "firebase/firestore";
 import { useSelector } from "react-redux";
+import GobackButton from "../UI/GobackButton";
 const EditInvoice = ({ defaultValues, isEdit }) => {
   const userUID = useSelector((state) => state.Login.uid);
   const collectionRef = collection(database, "users", userUID, "invoices");
@@ -32,71 +33,73 @@ const EditInvoice = ({ defaultValues, isEdit }) => {
   };
 
   return (
-    <FormProvider {...methods}>
-      <Box
-        onSubmit={handleSubmit((data) => {
-          const invoiceObj = createInvoiceObj(data);
-          addDoc(collectionRef, invoiceObj);
-        })}
-        as="form"
-        bg="darkThemeBg"
-      >
-        <Stack direction="column" gap={10} p={6} align="center">
-          <BillFrom></BillFrom>
-          <BillTo></BillTo>
-          <Stack direction="column">
-            <Text
-              fontSize="clamp(1.15rem, 0.9rem + 2vw, 2.4rem)"
-              color="rgba(119, 127, 152, 1)"
-              fontWeight="700"
-              marginBottom={6}
-            >
-              Item List
-            </Text>
-            <Stack direction="column" gap={12}>
-              {itemArticles.map((itemNumber) => (
-                <ItemArticle
-                  itemArticles={itemArticles}
-                  setItemArticles={setItemArticles}
-                  key={itemNumber}
-                  id={itemNumber}
-                ></ItemArticle>
-              ))}
+    <Box bg="darkThemeBg">
+      <GobackButton ml="3%"></GobackButton>
+      <FormProvider {...methods}>
+        <Box
+          onSubmit={handleSubmit((data) => {
+            const invoiceObj = createInvoiceObj(data);
+            addDoc(collectionRef, invoiceObj);
+          })}
+          as="form"
+        >
+          <Stack direction="column" gap={10} p={6} align="center">
+            <BillFrom></BillFrom>
+            <BillTo></BillTo>
+            <Stack direction="column">
+              <Text
+                fontSize="clamp(1.15rem, 0.9rem + 2vw, 2.4rem)"
+                color="rgba(119, 127, 152, 1)"
+                fontWeight="700"
+                marginBottom={6}
+              >
+                Item List
+              </Text>
+              <Stack direction="column" gap={12}>
+                {itemArticles.map((itemNumber) => (
+                  <ItemArticle
+                    itemArticles={itemArticles}
+                    setItemArticles={setItemArticles}
+                    key={itemNumber}
+                    id={itemNumber}
+                  ></ItemArticle>
+                ))}
+              </Stack>
             </Stack>
+            <Button
+              onClick={addItem}
+              justifyContent="center"
+              borderRadius="30px"
+              width="min(100%, 327px)"
+              height="48px"
+              variant="solid"
+              color="darkThemeGrey"
+              bg="#1E2139"
+              fontSize="0.75rem"
+              fontWeight="700"
+              lineHeight="0.9rem"
+            >
+              + Add New Item
+            </Button>
+            <Button
+              type="submit"
+              justifyContent="center"
+              borderRadius="30px"
+              width="min(100%, 327px)"
+              height="48px"
+              variant="solid"
+              color="darkThemeGrey"
+              bg="#1E2139"
+              fontSize="0.75rem"
+              fontWeight="700"
+              lineHeight="0.9rem"
+            >
+              Submit
+            </Button>
           </Stack>
-          <Button
-            onClick={addItem}
-            justifyContent="center"
-            borderRadius="30px"
-            width="min(100%, 327px)"
-            height="48px"
-            variant="solid"
-            color="darkThemeGrey"
-            bg="#1E2139"
-            fontSize="0.75rem"
-            fontWeight="700"
-            lineHeight="0.9rem"
-          >
-            + Add New Item
-          </Button>
-          <Button
-            type="submit"
-            justifyContent="center"
-            borderRadius="30px"
-            width="min(100%, 327px)"
-            height="48px"
-            variant="solid"
-            color="darkThemeGrey"
-            bg="#1E2139"
-            fontSize="0.75rem"
-            fontWeight="700"
-            lineHeight="0.9rem"
-          >
-            Submit
-          </Button>
-        </Stack>
-      </Box>
-    </FormProvider>
+        </Box>
+      </FormProvider>
+    </Box>
   );
 };
 

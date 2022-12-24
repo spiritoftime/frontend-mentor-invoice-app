@@ -1,9 +1,14 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
-const GobackButton = () => {
+import { useNavigate } from "react-router-dom";
+const GobackButton = ({ ml }) => {
+  const navigate = useNavigate();
   return (
     <Button
-      margin="32px 0 0 5%"
+      onClick={() => {
+        navigate("/invoices");
+      }}
+      margin={`32px 0 0 ${ml}`}
       width="81px"
       height="15px"
       background="none"

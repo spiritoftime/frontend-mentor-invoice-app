@@ -5,21 +5,13 @@ import { database } from "../../firestore";
 import { useSelector, useDispatch } from "react-redux";
 import { invoiceActions } from "../../redux-store/invoice-slice";
 import convertSecondsToDate from "../helper-functions/convertSecondsToDate";
-import {
-  Grid,
-  GridItem,
-  Card,
-  CardHeader,
-  Text,
-  CardBody,
-  CardFooter,
-  Icon,
-  Flex,
-  Box,
-} from "@chakra-ui/react";
+import { ButtonGroup, Text, Flex } from "@chakra-ui/react";
 import StatusBox from "../UI/StatusBox";
 import GobackButton from "../UI/GobackButton";
+import FooterButton from "../UI/FooterButton";
+import { useNavigate } from "react-router-dom";
 const ViewInvoice = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { invoiceId } = useParams();
   const uid = useSelector((state) => state.Login.uid);
@@ -35,7 +27,7 @@ const ViewInvoice = () => {
       docData.billTo.invoice.paymentDue = convertSecondsToDate(
         docData.billTo.invoice.paymentDue.seconds
       );
-      console.log(docData);
+
       dispatch(invoiceActions.queryInvoice(docData));
     };
     queryData();
@@ -50,7 +42,7 @@ const ViewInvoice = () => {
       minBlockSize="100vh"
       bg="darkThemeBg"
     >
-      <GobackButton></GobackButton>
+      <GobackButton ml="5%"></GobackButton>
       <Flex
         borderRadius="8px"
         padding="0 24px"
@@ -71,14 +63,36 @@ const ViewInvoice = () => {
         >
           Status
         </Text>
+
         <StatusBox
           width="fit-content"
           status={queriedInvoice.status}
           color="#FF8F00"
         ></StatusBox>
+        <Flex>
+          <ButtonGroup
+            justifyContent="space-between"
+            gap="8px"
+            padding="21px 10px"
+            position="absolute"
+            bottom="0"
+            left="0"
+            width="100%"
+            backgroundColor="darkThemeInput"
+          >
+            <FooterButton
+              onClick={() => {
+                navigate(`/invoices/edit/${invoiceId}`);
+              }}
+              color="#252945"
+              text="Edit"
+            ></FooterButton>
+            <FooterButton color="#EC5757" text="Delete"></FooterButton>
+            <FooterButton color="#7C5DFA" text="Mark as Paid"></FooterButton>
+          </ButtonGroup>
+        </Flex>
       </Flex>
       <Flex
-        height="700px"
         borderRadius="8px"
         padding="0 24px"
         alignItems="center"
@@ -87,7 +101,9 @@ const ViewInvoice = () => {
         width="90%"
         bg="darkThemeInput"
         justify="space-between"
-      />
+      >
+        HiQ
+      </Flex>
     </Flex>
   );
 };

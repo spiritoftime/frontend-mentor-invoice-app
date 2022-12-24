@@ -34,6 +34,14 @@ function App() {
                 </ProtectedRoute>
               }
             ></Route>
+            <Route
+              path="edit/:invoiceId"
+              element={
+                <ProtectedRoute>
+                  <EditInvoice />
+                </ProtectedRoute>
+              }
+            ></Route>
           </Route>
           <Route
             path="/new-invoice"
