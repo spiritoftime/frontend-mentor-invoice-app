@@ -18,7 +18,6 @@ const ViewInvoice = () => {
   const docRef = doc(database, "users", uid, "invoices", invoiceId);
   useEffect(() => {
     const queryData = async () => {
-      // const queryData = () => {
       const docSnap = await getDoc(docRef);
       const docData = docSnap.data();
       docData.billTo.invoice.date = convertSecondsToDate(
@@ -33,7 +32,9 @@ const ViewInvoice = () => {
     queryData();
   }, []);
   const { queriedInvoice } = useSelector((state) => state.invoice);
-
+  console.log(queriedInvoice);
+  if (Object.keys(queriedInvoice).length === 0)
+    return <Text>Still Loading...</Text>;
   return (
     <Flex
       alignItems="flex-start"
@@ -103,68 +104,218 @@ const ViewInvoice = () => {
       </Flex>
       <Flex
         direction="column"
-        borderRadius="8px"
-        padding="0 24px"
+        borderRadius="8px 8px 0 0"
+        padding="24px 24px 0"
         alignItems="start"
         color="darkThemeGrey"
         margin="0 auto 82px"
         width="90%"
         bg="darkThemeInput"
       >
-        <Flex direction="column" gap={6}>
-          <Flex direction="column">
+        <Flex width="100%" direction="column" gap={6}>
+          <Flex direction="column" gap="30px">
             <Flex direction="column">
-              <Text>#XM9141</Text>
-              <Text>Graphic Design</Text>
+              <GridItem
+                fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                display="flex"
+                justify="center"
+                alignItems="center"
+              >
+                <Text color="hashColor">#</Text>
+                <Text color="darkThemeWhite" fontWeight="700" lineHeight="1.4">
+                  {queriedInvoice.id}
+                </Text>
+              </GridItem>
+              <Text
+                fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                color="darkThemeGreyWhite"
+                fontWeight="500"
+                lineHeight="1.4"
+              >
+                {queriedInvoice.billTo.invoice.description}
+              </Text>
             </Flex>
-            <Flex direction="column">
-              <Text>19 Union Terrace</Text>
-              <Text>London</Text>
-              <Text>E1 3EZ</Text>
-              <Text>United Kingdom</Text>
+            <Flex
+              fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+              color="darkThemeGreyWhite"
+              fontWeight="500"
+              width="60%"
+              lineHeight="1.4"
+              direction="column"
+            >
+              <Text>{queriedInvoice.billFrom.addressDetails.address}</Text>
+              <Text>{queriedInvoice.billFrom.addressDetails.city}</Text>
+              <Text>{queriedInvoice.billFrom.addressDetails.postCode}</Text>
+              <Text>{queriedInvoice.billFrom.addressDetails.country}</Text>
             </Flex>
           </Flex>
           <Flex gap={6} direction="column">
             <Grid columnGap={6} rowGap={6} templateColumns={"repeat(2,1fr)"}>
               <GridItem colSpan={1}>
-                <Text>Invoice Date</Text>
-                <Text>21 Aug 2021</Text>
+                <Text
+                  fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                  color="darkThemeGreyWhite"
+                  fontWeight="500"
+                  lineHeight="1.4"
+                >
+                  Invoice Date
+                </Text>
+                <Text
+                  fontSize="clamp(0.95rem, 0.5rem + 2vw, 2.4rem)"
+                  color="darkThemeWhite"
+                  fontWeight="700"
+                  lineHeight="1.4"
+                >
+                  {queriedInvoice.billTo.invoice.date}
+                </Text>
               </GridItem>
               <GridItem rowStart={2}>
-                <Text>Payment Due</Text>
-                <Text>20 Sep 2021</Text>
+                <Text
+                  fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                  color="darkThemeGreyWhite"
+                  fontWeight="500"
+                  lineHeight="1.4"
+                >
+                  Payment Due
+                </Text>
+                <Text
+                  fontSize="clamp(0.95rem, 0.5rem + 2vw, 2.4rem)"
+                  color="darkThemeWhite"
+                  fontWeight="700"
+                  lineHeight="1.4"
+                >
+                  {queriedInvoice.billTo.invoice.paymentDue}
+                </Text>
               </GridItem>
               <GridItem rowSpan={2}>
-                <Text>Bill To</Text>
-                <Text>Alex Grim</Text>
-                <Text>84 Church Way</Text>
-                <Text>Bradford</Text>
-                <Text>BD1 9PB</Text>
-                <Text>United Kingdom</Text>
+                <Text
+                  fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                  color="darkThemeGreyWhite"
+                  fontWeight="500"
+                  lineHeight="1.4"
+                >
+                  Bill To
+                </Text>
+                <Text
+                  fontSize="clamp(0.95rem, 0.5rem + 2vw, 2.4rem)"
+                  color="darkThemeWhite"
+                  fontWeight="700"
+                  lineHeight="1.4"
+                  marginBottom="8px"
+                >
+                  {queriedInvoice.billTo.clientName}
+                </Text>
+                <Flex
+                  fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                  color="darkThemeGreyWhite"
+                  fontWeight="500"
+                  lineHeight="1.4"
+                  direction="column"
+                >
+                  <Text>{queriedInvoice.billTo.addressDetails.address}</Text>
+                  <Text>{queriedInvoice.billTo.addressDetails.city}</Text>
+                  <Text>{queriedInvoice.billTo.addressDetails.postCode}</Text>
+                  <Text>{queriedInvoice.billTo.addressDetails.country}</Text>
+                </Flex>
               </GridItem>
             </Grid>
             <Flex direction="column">
-              <Text>Sent to</Text>
-              <Text>alexgrim@mail.com</Text>
+              <Text
+                fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                color="darkThemeGreyWhite"
+                fontWeight="500"
+                lineHeight="1.4"
+                direction="column"
+              >
+                Sent to
+              </Text>
+              <Text
+                fontSize="clamp(0.95rem, 0.5rem + 2vw, 2.4rem)"
+                color="darkThemeWhite"
+                fontWeight="700"
+                lineHeight="1.4"
+              >
+                {queriedInvoice.billTo.clientEmail}
+              </Text>
             </Flex>
           </Flex>
           <Flex
             direction="column"
-            borderRadius="8px"
+            borderRadius="8px 8px 0 0 "
             alignItems="start"
             color="darkThemeGrey"
             margin="0 auto"
+            width="100%"
+            padding="24px 24px"
             backgroundColor="rgba(37, 41, 69, 1)"
           >
-            <Grid>
-              <GridItem>iudakaqedaadsdasdasdasdasadc</GridItem>
-              <GridItem>iudakaqedaadsdasdasdasdasadc</GridItem>
-              <GridItem>iudakaqedaadsdasdasdasdasadc</GridItem>
-              <GridItem>iudakaqedaadsdasdasdasdasadc</GridItem>
-              <GridItem>iudakaqedaadsdasdasdasdasadc</GridItem>
-              <GridItem>iudakaqedaadsdasdasdasdasadc</GridItem>
-              <GridItem>iudakaqedaadsdasdasdasdasadc</GridItem>
+            <Grid width="100%" rowGap={6}>
+              {Object.keys(queriedInvoice.itemList.items).map((key) => {
+                return (
+                  <GridItem>
+                    <Flex align="center" justify="space-between">
+                      <Flex direction="column">
+                        <Text
+                          fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                          color="darkThemeWhite"
+                          fontWeight="700"
+                          lineHeight="1.4"
+                          direction="column"
+                        >
+                          {key}
+                        </Text>
+                        <Text
+                          fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                          color="darkThemeGreyWhite"
+                          fontWeight="700"
+                          lineHeight="1.4"
+                          direction="column"
+                        >
+                          {queriedInvoice.itemList.items[key].qty} x £
+                          {queriedInvoice.itemList.items[key].price}
+                        </Text>
+                      </Flex>
+                      <Text
+                        fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                        color="darkThemeWhite"
+                        fontWeight="700"
+                        lineHeight="1.4"
+                        direction="column"
+                      >
+                        £{queriedInvoice.itemList.items[key].total}
+                      </Text>
+                    </Flex>
+                  </GridItem>
+                );
+              })}
             </Grid>
+          </Flex>
+        </Flex>
+        <Flex
+          width="100%"
+          borderRadius="0 0 8px 8px"
+          padding="24px"
+          height="80px"
+          marginBottom={6}
+          backgroundColor="rgba(12, 14, 22, 1)"
+        >
+          <Flex align="center" justify="space-between">
+            <Text
+              fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+              color="darkThemeGreyWhite"
+              fontWeight="500"
+              lineHeight="1.4"
+            >
+              Amount Due
+            </Text>
+            <Text
+              fontSize="clamp(1.05rem, 0.7rem + 2vw, 3rem)"
+              color="darkThemeWhite"
+              fontWeight="700"
+              lineHeight="1.6"
+            >
+              £{queriedInvoice.itemList.grandTotal}
+            </Text>
           </Flex>
         </Flex>
       </Flex>
