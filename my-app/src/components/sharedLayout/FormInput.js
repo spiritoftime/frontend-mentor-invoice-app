@@ -10,7 +10,7 @@ import { useFormContext } from "react-hook-form";
 import { useParams } from "react-router-dom";
 const FormInput = ({ label, type, color, objKey }) => {
   const { register } = useFormContext();
-  console.log(objKey);
+
   const params = useParams();
 
   if (Object.keys(params).length !== 0)

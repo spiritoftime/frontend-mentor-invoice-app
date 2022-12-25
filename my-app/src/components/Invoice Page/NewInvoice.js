@@ -31,6 +31,7 @@ const NewInvoice = () => {
       <FormProvider {...methods}>
         <Box
           onSubmit={handleSubmit((data) => {
+            console.log(data);
             const invoiceObj = createInvoiceObj(data);
             addDoc(collectionRef, invoiceObj);
           })}

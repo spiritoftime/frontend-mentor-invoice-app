@@ -18,13 +18,18 @@ import {
 } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import GobackButton from "../UI/GobackButton";
-import createItemsObj from "../helper-functions/createItemsObj";
+import createItemsArr from "../helper-functions/createItemsArr";
 const EditInvoice = () => {
   const userUID = useSelector((state) => state.Login.uid);
   const params = useParams();
   const queriedInvoice = useSelector((state) => state.invoice.queriedInvoice);
 
-  const itemsObj = createItemsObj(queriedInvoice);
+  const itemsArr = createItemsArr(queriedInvoice);
+
+  const itemsObj = itemsArr.reduce((initialObj, itemObj) => {
+    return { ...initialObj, ...itemObj };
+  }, {});
+
   const collectionRef = collection(database, "users", userUID, "invoices");
   let preLoadedValues = {};
   if (Object.keys(params).length !== 0)
@@ -34,17 +39,19 @@ const EditInvoice = () => {
       city: queriedInvoice.billFrom.addressDetails.city,
       postCode: queriedInvoice.billFrom.addressDetails.postCode,
       country: queriedInvoice.billFrom.addressDetails.country,
+      clientEmail: queriedInvoice.billTo.clientEmail,
+      clientName: queriedInvoice.billTo.clientName,
       billToAddress: queriedInvoice.billTo.addressDetails.address,
       billToCity: queriedInvoice.billTo.addressDetails.city,
       billToPostCode: queriedInvoice.billTo.addressDetails.postCode,
       billToCountry: queriedInvoice.billTo.addressDetails.country,
       date: convertDateToInputDate(queriedInvoice.billTo.invoice.date),
       paymentTerms: queriedInvoice.billTo.invoice.paymentTerms,
-      paymentDue: queriedInvoice.billTo.invoice.paymentDue,
+
       description: queriedInvoice.billTo.invoice.description,
-      grandTotal: queriedInvoice.itemList.grandTotal,
       ...itemsObj,
     };
+  console.log(preLoadedValues);
   const methods = useForm({
     defaultValues: preLoadedValues,
   });
