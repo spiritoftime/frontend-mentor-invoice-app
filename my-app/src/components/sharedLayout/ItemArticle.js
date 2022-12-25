@@ -51,6 +51,7 @@ const ItemArticle = ({ id, itemArticles, setItemArticles }) => {
         <svg
           onClick={() => {
             const articleCopy = [...itemArticles];
+            if (articleCopy.length === 1) return;
             const articleIndex = articleCopy.indexOf(id);
             articleCopy.splice(articleIndex, 1);
             setItemArticles(articleCopy);

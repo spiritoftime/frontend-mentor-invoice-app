@@ -5,10 +5,11 @@ import NavBar from "./components/sharedLayout/NavBar";
 import InvoiceTab from "./components/Invoices Page/InvoiceTab";
 import Invoices from "./components/Invoices Page/Invoices";
 import theme from "./chakraUI themes/theme";
-import EditInvoice from "./components/Invoice Page/EditInvoice";
+import NewInvoice from "./components/Invoice Page/NewInvoice";
 import Login from "./components/Login page/Login";
 import ProtectedRoute from "./components/sharedLayout/ProtectedRoute";
 import ViewInvoice from "./components/ViewInvoice page/ViewInvoice";
+import EditInvoice from "./components/Invoice Page/EditInvoice";
 function App() {
   const { invoiceId } = useParams();
   return (
@@ -47,7 +48,7 @@ function App() {
             path="/new-invoice"
             element={
               <ProtectedRoute>
-                <EditInvoice />
+                <NewInvoice />
               </ProtectedRoute>
             }
           />

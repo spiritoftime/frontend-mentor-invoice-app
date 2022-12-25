@@ -15,6 +15,7 @@ const BillFrom = () => {
       <Grid rowGap={6} columnGap={6} templateColumns="repeat(2,1fr)">
         <GridItem colSpan={2}>
           <FormInput
+            name="billFromAddress"
             objKey="address"
             label="Street Address"
             defaultValue=""

@@ -6,62 +6,20 @@ import BillFrom from "../sharedLayout/BillFrom";
 import BillTo from "../sharedLayout/BillTo";
 import { database } from "../../firestore";
 import { createInvoiceObj } from "../helper-functions/createInvoiceObj";
-import { useParams } from "react-router-dom";
-import convertDateToInputDate from "../helper-functions/convertDateToInputDate";
-import {
-  doc,
-  addDoc,
-  setDoc,
-  deleteDoc,
-  updateDoc,
-  collection,
-} from "firebase/firestore";
+
+import { addDoc, collection } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import GobackButton from "../UI/GobackButton";
-import createItemsObj from "../helper-functions/createItemsObj";
-const EditInvoice = () => {
+const NewInvoice = () => {
   const userUID = useSelector((state) => state.Login.uid);
-  const params = useParams();
-  const queriedInvoice = useSelector((state) => state.invoice.queriedInvoice);
-
-  const itemsObj = createItemsObj(queriedInvoice);
   const collectionRef = collection(database, "users", userUID, "invoices");
-  let preLoadedValues = {};
-  if (Object.keys(params).length !== 0)
-    preLoadedValues = {
-      id: queriedInvoice.billTo.id,
-      address: queriedInvoice.billFrom.addressDetails.address,
-      city: queriedInvoice.billFrom.addressDetails.city,
-      postCode: queriedInvoice.billFrom.addressDetails.postCode,
-      country: queriedInvoice.billFrom.addressDetails.country,
-      billToAddress: queriedInvoice.billTo.addressDetails.address,
-      billToCity: queriedInvoice.billTo.addressDetails.city,
-      billToPostCode: queriedInvoice.billTo.addressDetails.postCode,
-      billToCountry: queriedInvoice.billTo.addressDetails.country,
-      date: convertDateToInputDate(queriedInvoice.billTo.invoice.date),
-      paymentTerms: queriedInvoice.billTo.invoice.paymentTerms,
-      paymentDue: queriedInvoice.billTo.invoice.paymentDue,
-      description: queriedInvoice.billTo.invoice.description,
-      grandTotal: queriedInvoice.itemList.grandTotal,
-      ...itemsObj,
-    };
-  const methods = useForm({
-    defaultValues: preLoadedValues,
-  });
+  const methods = useForm();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = methods;
-  let initialItemArticles = ["item 1"];
-  if (Object.keys(params).length !== 0) {
-    const arr = [];
-    for (let i = 0; i < Object.keys(itemsObj).length; i++) {
-      arr.push(`item ${i + 1}`);
-    }
-    initialItemArticles = arr;
-  }
-  const [itemArticles, setItemArticles] = useState(initialItemArticles);
+  const [itemArticles, setItemArticles] = useState(["item 1"]);
   const addItem = () => {
     const itemNumber = itemArticles.at(-1).split(" ")[1];
     setItemArticles((prevstate) => [...prevstate, `item ${+itemNumber + 1}`]);
@@ -138,4 +96,4 @@ const EditInvoice = () => {
   );
 };
 
-export default EditInvoice;
+export default NewInvoice;

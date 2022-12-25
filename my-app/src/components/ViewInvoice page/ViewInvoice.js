@@ -32,7 +32,7 @@ const ViewInvoice = () => {
     queryData();
   }, []);
   const { queriedInvoice } = useSelector((state) => state.invoice);
-  console.log(queriedInvoice);
+
   if (Object.keys(queriedInvoice).length === 0)
     return <Text>Still Loading...</Text>;
   return (
@@ -299,7 +299,7 @@ const ViewInvoice = () => {
           marginBottom={6}
           backgroundColor="rgba(12, 14, 22, 1)"
         >
-          <Flex align="center" justify="space-between">
+          <Flex width="100%" align="center" justify="space-between">
             <Text
               fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
               color="darkThemeGreyWhite"
