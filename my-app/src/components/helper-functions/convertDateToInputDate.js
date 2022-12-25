@@ -1,10 +1,5 @@
 const convertDateToInputDate = (date) => {
-  const dateArr = date.split("/");
-  dateArr.reverse();
-  const month = dateArr.at(-1);
-  const day = dateArr[1];
-  dateArr[2] = day;
-  dateArr[1] = month;
-  return dateArr.join("-");
+  const [month, day, year] = date.split("/");
+  return [year, month, day].join("-");
 };
 export default convertDateToInputDate;

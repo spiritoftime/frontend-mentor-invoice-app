@@ -250,9 +250,9 @@ const ViewInvoice = () => {
             backgroundColor="rgba(37, 41, 69, 1)"
           >
             <Grid width="100%" rowGap={6}>
-              {Object.keys(queriedInvoice.itemList.items).map((key) => {
+              {Object.keys(queriedInvoice.itemList.items).map((key, idx) => {
                 return (
-                  <GridItem>
+                  <GridItem key={idx}>
                     <Flex align="center" justify="space-between">
                       <Flex direction="column">
                         <Text

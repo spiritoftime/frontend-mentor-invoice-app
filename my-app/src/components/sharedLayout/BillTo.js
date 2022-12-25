@@ -19,7 +19,6 @@ const BillTo = () => {
             objKey="clientName"
             color="darkThemeWhite"
             label="Client's Name"
-            defaultValue=""
             type="text"
           ></FormInput>
         </GridItem>
@@ -28,7 +27,6 @@ const BillTo = () => {
             objKey="clientEmail"
             color="darkThemeWhite"
             label="Client's Email"
-            defaultValue=""
             type="text"
           ></FormInput>
         </GridItem>
@@ -37,7 +35,6 @@ const BillTo = () => {
             objKey="billToAddress"
             color="darkThemeWhite"
             label="Street Address"
-            defaultValue=""
             type="text"
           ></FormInput>
         </GridItem>
@@ -46,7 +43,6 @@ const BillTo = () => {
             objKey="billToCity"
             color="darkThemeWhite"
             label="City"
-            defaultValue=""
             type="text"
           ></FormInput>
         </GridItem>
@@ -55,7 +51,6 @@ const BillTo = () => {
             objKey="billToPostCode"
             color="darkThemeWhite"
             label="Post Code"
-            defaultValue=""
             type="text"
           ></FormInput>
         </GridItem>
@@ -64,7 +59,6 @@ const BillTo = () => {
             objKey="billToCountry"
             color="darkThemeWhite"
             label="Country"
-            defaultValue=""
             type="text"
           ></FormInput>
         </GridItem>
@@ -72,7 +66,6 @@ const BillTo = () => {
           <FormInput
             objKey="date"
             label="Invoice Date"
-            defaultValue="2022-12-21"
             color="darkThemeGrey"
             type="date"
           ></FormInput>

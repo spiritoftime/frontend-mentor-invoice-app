@@ -34,7 +34,6 @@ const EditInvoice = () => {
   let preLoadedValues = {};
   if (Object.keys(params).length !== 0)
     preLoadedValues = {
-      id: queriedInvoice.billTo.id,
       address: queriedInvoice.billFrom.addressDetails.address,
       city: queriedInvoice.billFrom.addressDetails.city,
       postCode: queriedInvoice.billFrom.addressDetails.postCode,
