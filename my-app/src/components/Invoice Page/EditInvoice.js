@@ -150,7 +150,7 @@ const EditInvoice = () => {
           width="100%"
           backgroundColor="darkThemeInput"
           margin="0 auto"
-          justify="center"
+          justify="end"
         >
           <ButtonGroup
             justifyContent="space-between"
@@ -160,13 +160,13 @@ const EditInvoice = () => {
             <FooterButton
               onClick={() => {}}
               color="#252945"
-              text="Discard"
+              text="Cancel"
             ></FooterButton>
-            <FooterButton color="#373B53" text="Save as Draft"></FooterButton>
+
             <FooterButton
               onClick={() => {}}
               color="#7C5DFA"
-              text="Save & Send"
+              text="Save Changes"
             ></FooterButton>
           </ButtonGroup>
         </Flex>

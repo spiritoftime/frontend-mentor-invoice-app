@@ -5,7 +5,22 @@ import { database } from "../../firestore";
 import { useSelector, useDispatch } from "react-redux";
 import { invoiceActions } from "../../redux-store/invoice-slice";
 import convertSecondsToDate from "../helper-functions/convertSecondsToDate";
-import { ButtonGroup, Text, Flex, Grid, GridItem } from "@chakra-ui/react";
+import {
+  ButtonGroup,
+  Text,
+  Flex,
+  Grid,
+  GridItem,
+  Modal,
+  ModalOverlay,
+  Button,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from "@chakra-ui/react";
 import StatusBox from "../UI/StatusBox";
 import GobackButton from "../UI/GobackButton";
 import FooterButton from "../UI/FooterButton";
@@ -14,6 +29,7 @@ const ViewInvoice = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { invoiceId } = useParams();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const uid = useSelector((state) => state.Login.uid);
   const docRef = doc(database, "users", uid, "invoices", invoiceId);
   useEffect(() => {
@@ -92,7 +108,43 @@ const ViewInvoice = () => {
               color="#252945"
               text="Edit"
             ></FooterButton>
-            <FooterButton color="#EC5757" text="Delete"></FooterButton>
+            <FooterButton
+              color="#EC5757"
+              text="Delete"
+              onClick={onOpen}
+            ></FooterButton>
+            <Modal isOpen={isOpen} onClose={onClose}>
+              <ModalOverlay />
+              <ModalContent background="darkThemeInput">
+                <ModalHeader
+                  color="darkThemeWhite"
+                  fontSize="clamp(1.5rem, 0.9rem + 2vw, 1.6rem)"
+                  fontWeight="700"
+                  lineHeight="1.25"
+                >
+                  Confirm Deletion
+                </ModalHeader>
+                <ModalCloseButton />
+                <ModalBody
+                  fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                  color="darkThemeGreyWhite"
+                  fontWeight="500"
+                  lineHeight="1.4"
+                >
+                  Are you sure you want to delete invoice #{queriedInvoice.id}?
+                  This action cannot be undone.
+                </ModalBody>
+
+                <ModalFooter gap={2}>
+                  <FooterButton
+                    onClick={onClose}
+                    color="#252945"
+                    text="Cancel"
+                  ></FooterButton>
+                  <FooterButton color="#EC5757" text="Delete"></FooterButton>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
             <FooterButton
               onClick={() => {
                 setDoc(docRef, { status: "Paid" }, { merge: true });
@@ -140,8 +192,8 @@ const ViewInvoice = () => {
               fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
               color="darkThemeGreyWhite"
               fontWeight="500"
-              width="60%"
               lineHeight="1.4"
+              width="60%"
               direction="column"
             >
               <Text>{queriedInvoice.billFrom.addressDetails.address}</Text>
