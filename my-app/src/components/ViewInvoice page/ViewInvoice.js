@@ -44,6 +44,7 @@ const ViewInvoice = () => {
       bg="darkThemeBg"
     >
       <GobackButton ml="5%"></GobackButton>
+
       <Flex
         borderRadius="8px"
         padding="0 24px"

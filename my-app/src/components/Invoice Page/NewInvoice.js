@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { Stack, Box, Button, Text } from "@chakra-ui/react";
+import { Flex, Stack, Box, Button, Text } from "@chakra-ui/react";
 import ItemArticle from "../sharedLayout/ItemArticle";
 import BillFrom from "../sharedLayout/BillFrom";
 import BillTo from "../sharedLayout/BillTo";
@@ -27,7 +27,19 @@ const NewInvoice = () => {
 
   return (
     <Box bg="darkThemeBg">
-      <GobackButton ml="3%"></GobackButton>
+      <GobackButton ml="24px"></GobackButton>
+      <Flex
+        fontSize="clamp(1.5rem, 0.9rem + 2vw, 1.6rem)"
+        display="flex"
+        justify="flex-start"
+        alignItems="center"
+        fontWeight="700"
+        lineHeight="1.25"
+        paddingLeft={6}
+        paddingTop={6}
+      >
+        <Text color="darkThemeWhite">New Invoice</Text>
+      </Flex>
       <FormProvider {...methods}>
         <Box
           onSubmit={handleSubmit((data) => {

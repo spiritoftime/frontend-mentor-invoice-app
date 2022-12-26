@@ -76,7 +76,25 @@ const EditInvoice = () => {
 
   return (
     <Box bg="darkThemeBg">
-      <GobackButton ml="3%"></GobackButton>
+      <GobackButton ml="18px"></GobackButton>
+      <Flex
+        fontSize="clamp(1.5rem, 0.9rem + 2vw, 1.6rem)"
+        display="flex"
+        justify="flex-start"
+        alignItems="center"
+        fontWeight="700"
+        lineHeight="1.25"
+        paddingLeft={6}
+        paddingTop={6}
+      >
+        <Text color="darkThemeWhite">
+          Edit{" "}
+          <Text color="hashColor" as="span">
+            #
+          </Text>
+          {queriedInvoice.id}
+        </Text>
+      </Flex>
       <FormProvider {...methods}>
         <Box
           onSubmit={handleSubmit((data) => {
