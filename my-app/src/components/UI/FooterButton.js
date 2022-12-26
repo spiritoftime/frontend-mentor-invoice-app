@@ -3,6 +3,7 @@ import { Button } from "@chakra-ui/react";
 const FooterButton = (props) => {
   return (
     <Button
+      type={props.type}
       onClick={props.onClick}
       borderRadius="30px"
       fontSize="clamp(0.45rem, 0.2rem + 2vw, 1.6rem)"

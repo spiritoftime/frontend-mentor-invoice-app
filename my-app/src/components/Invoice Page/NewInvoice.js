@@ -61,8 +61,8 @@ const NewInvoice = () => {
       <FormProvider {...methods}>
         <Box
           onSubmit={handleSubmit((data) => {
-            console.log(data);
             const invoiceObj = createInvoiceObj(data);
+            console.log(invoiceObj);
             addDoc(collectionRef, invoiceObj);
           })}
           as="form"
@@ -106,72 +106,72 @@ const NewInvoice = () => {
               + Add New Item
             </Button>
           </Stack>
-        </Box>
-        <Flex
-          position="relative"
-          bottom="-82px"
-          left="0"
-          width="100%"
-          backgroundColor="darkThemeInput"
-          margin="0 auto"
-          justify="center"
-        >
-          <ButtonGroup
-            justifyContent="space-between"
-            gap="8px"
-            padding="21px 10px"
+          <Flex
+            position="relative"
+            bottom="-82px"
+            left="0"
+            width="100%"
+            backgroundColor="darkThemeInput"
+            margin="0 auto"
+            justify="center"
           >
-            <FooterButton
-              onClick={onOpen}
-              color="#252945"
-              text="Discard"
-            ></FooterButton>
-            <Modal isOpen={isOpen} onClose={onClose}>
-              <ModalOverlay />
-              <ModalContent width="90%" background="darkThemeInput">
-                <ModalHeader
-                  color="darkThemeWhite"
-                  fontSize="clamp(1.5rem, 0.9rem + 2vw, 1.6rem)"
-                  fontWeight="700"
-                  lineHeight="1.25"
-                >
-                  Confirm Discard
-                </ModalHeader>
-                <ModalCloseButton />
-                <ModalBody
-                  fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-                  color="darkThemeGreyWhite"
-                  fontWeight="500"
-                  lineHeight="1.4"
-                >
-                  Are you sure you want to discard changes? Your edits will not
-                  be saved.
-                </ModalBody>
+            <ButtonGroup
+              justifyContent="space-between"
+              gap="8px"
+              padding="21px 10px"
+            >
+              <FooterButton
+                onClick={onOpen}
+                color="#252945"
+                text="Discard"
+              ></FooterButton>
+              <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent width="90%" background="darkThemeInput">
+                  <ModalHeader
+                    color="darkThemeWhite"
+                    fontSize="clamp(1.5rem, 0.9rem + 2vw, 1.6rem)"
+                    fontWeight="700"
+                    lineHeight="1.25"
+                  >
+                    Confirm Discard
+                  </ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody
+                    fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                    color="darkThemeGreyWhite"
+                    fontWeight="500"
+                    lineHeight="1.4"
+                  >
+                    Are you sure you want to discard changes? Your edits will
+                    not be saved.
+                  </ModalBody>
 
-                <ModalFooter gap={2}>
-                  <FooterButton
-                    onClick={onClose}
-                    color="#252945"
-                    text="Cancel"
-                  ></FooterButton>
-                  <FooterButton
-                    onClick={async () => {
-                      navigate("/invoices");
-                    }}
-                    color="#EC5757"
-                    text="Discard"
-                  ></FooterButton>
-                </ModalFooter>
-              </ModalContent>
-            </Modal>
-            <FooterButton color="#373B53" text="Save as Draft"></FooterButton>
-            <FooterButton
-              onClick={() => {}}
-              color="#7C5DFA"
-              text="Save & Send"
-            ></FooterButton>
-          </ButtonGroup>
-        </Flex>
+                  <ModalFooter gap={2}>
+                    <FooterButton
+                      onClick={onClose}
+                      color="#252945"
+                      text="Cancel"
+                    ></FooterButton>
+                    <FooterButton
+                      onClick={async () => {
+                        navigate("/invoices");
+                      }}
+                      color="#EC5757"
+                      text="Discard"
+                    ></FooterButton>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+              <FooterButton color="#373B53" text="Save as Draft"></FooterButton>
+              <FooterButton
+                type="submit"
+                color="#7C5DFA"
+                text="Save & Send"
+              ></FooterButton>
+            </ButtonGroup>
+          </Flex>
+        </Box>
       </FormProvider>
     </Box>
   );
