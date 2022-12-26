@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { Stack, Box, Button, Text } from "@chakra-ui/react";
+import { Stack, Box, Button, Text, Flex, ButtonGroup } from "@chakra-ui/react";
 import ItemArticle from "../sharedLayout/ItemArticle";
+import FooterButton from "../UI/FooterButton";
 import BillFrom from "../sharedLayout/BillFrom";
 import BillTo from "../sharedLayout/BillTo";
 import { database } from "../../firestore";
@@ -50,7 +51,7 @@ const EditInvoice = () => {
       description: queriedInvoice.billTo.invoice.description,
       ...itemsObj,
     };
-  console.log(preLoadedValues);
+
   const methods = useForm({
     defaultValues: preLoadedValues,
   });
@@ -122,23 +123,35 @@ const EditInvoice = () => {
             >
               + Add New Item
             </Button>
-            <Button
-              type="submit"
-              justifyContent="center"
-              borderRadius="30px"
-              width="min(100%, 327px)"
-              height="48px"
-              variant="solid"
-              color="darkThemeGrey"
-              bg="#1E2139"
-              fontSize="0.75rem"
-              fontWeight="700"
-              lineHeight="0.9rem"
-            >
-              Submit
-            </Button>
           </Stack>
         </Box>
+        <Flex
+          position="relative"
+          bottom="-82px"
+          left="0"
+          width="100%"
+          backgroundColor="darkThemeInput"
+          margin="0 auto"
+          justify="center"
+        >
+          <ButtonGroup
+            justifyContent="space-between"
+            gap="8px"
+            padding="21px 10px"
+          >
+            <FooterButton
+              onClick={() => {}}
+              color="#252945"
+              text="Discard"
+            ></FooterButton>
+            <FooterButton color="#373B53" text="Save as Draft"></FooterButton>
+            <FooterButton
+              onClick={() => {}}
+              color="#7C5DFA"
+              text="Save & Send"
+            ></FooterButton>
+          </ButtonGroup>
+        </Flex>
       </FormProvider>
     </Box>
   );
