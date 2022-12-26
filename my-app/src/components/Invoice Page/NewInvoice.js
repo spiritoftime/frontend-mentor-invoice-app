@@ -1,6 +1,22 @@
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { Flex, Stack, Box, Button, ButtonGroup, Text } from "@chakra-ui/react";
+import {
+  Flex,
+  Stack,
+  Box,
+  Button,
+  ButtonGroup,
+  Text,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import ItemArticle from "../sharedLayout/ItemArticle";
 import BillFrom from "../sharedLayout/BillFrom";
 import BillTo from "../sharedLayout/BillTo";
@@ -12,6 +28,8 @@ import { useSelector } from "react-redux";
 import GobackButton from "../UI/GobackButton";
 const NewInvoice = () => {
   const userUID = useSelector((state) => state.Login.uid);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate = useNavigate();
   const collectionRef = collection(database, "users", userUID, "invoices");
   const methods = useForm();
   const {
@@ -104,10 +122,48 @@ const NewInvoice = () => {
             padding="21px 10px"
           >
             <FooterButton
-              onClick={() => {}}
+              onClick={onOpen}
               color="#252945"
               text="Discard"
             ></FooterButton>
+            <Modal isOpen={isOpen} onClose={onClose}>
+              <ModalOverlay />
+              <ModalContent width="90%" background="darkThemeInput">
+                <ModalHeader
+                  color="darkThemeWhite"
+                  fontSize="clamp(1.5rem, 0.9rem + 2vw, 1.6rem)"
+                  fontWeight="700"
+                  lineHeight="1.25"
+                >
+                  Confirm Discard
+                </ModalHeader>
+                <ModalCloseButton />
+                <ModalBody
+                  fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                  color="darkThemeGreyWhite"
+                  fontWeight="500"
+                  lineHeight="1.4"
+                >
+                  Are you sure you want to discard changes? Your edits will not
+                  be saved.
+                </ModalBody>
+
+                <ModalFooter gap={2}>
+                  <FooterButton
+                    onClick={onClose}
+                    color="#252945"
+                    text="Cancel"
+                  ></FooterButton>
+                  <FooterButton
+                    onClick={async () => {
+                      navigate("/invoices");
+                    }}
+                    color="#EC5757"
+                    text="Discard"
+                  ></FooterButton>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
             <FooterButton color="#373B53" text="Save as Draft"></FooterButton>
             <FooterButton
               onClick={() => {}}

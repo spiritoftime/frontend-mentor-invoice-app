@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { setDoc, getDoc, doc } from "firebase/firestore";
+import { setDoc, getDoc, doc, deleteDoc } from "firebase/firestore";
 import { database } from "../../firestore";
 import { useSelector, useDispatch } from "react-redux";
 import { invoiceActions } from "../../redux-store/invoice-slice";
@@ -141,7 +141,14 @@ const ViewInvoice = () => {
                     color="#252945"
                     text="Cancel"
                   ></FooterButton>
-                  <FooterButton color="#EC5757" text="Delete"></FooterButton>
+                  <FooterButton
+                    onClick={async () => {
+                      await deleteDoc(docRef);
+                      navigate("/invoices");
+                    }}
+                    color="#EC5757"
+                    text="Delete"
+                  ></FooterButton>
                 </ModalFooter>
               </ModalContent>
             </Modal>
