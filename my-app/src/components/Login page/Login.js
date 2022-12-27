@@ -4,6 +4,7 @@ import {
   Card,
   CardHeader,
   Text,
+  Stack,
   Flex,
   Heading,
   CardBody,
@@ -21,14 +22,20 @@ const Login = () => {
 
   return (
     <Flex
-      minHeight="100vh"
+      minHeight="calc(100vh - 72px)"
       backgroundColor="darkThemeGrey"
       justify="center"
       align="center"
     >
-      <Card boxShadow="md" backgroundColor="whiteAlpha.900" align="center">
+      <Card
+        minWidth="90%"
+        minHeight="25vh"
+        boxShadow="md"
+        backgroundColor="whiteAlpha.900"
+        align="center"
+      >
         <CardHeader>
-          <Heading size="md">Login </Heading>
+          <Heading size="md">Login</Heading>
         </CardHeader>
         <Button
           onClick={() => {

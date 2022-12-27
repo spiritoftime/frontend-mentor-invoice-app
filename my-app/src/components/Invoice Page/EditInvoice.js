@@ -124,6 +124,7 @@ const EditInvoice = () => {
           onSubmit={handleSubmit((data) => {
             const invoiceObj = createInvoiceObj(data);
             invoiceObj.status = queriedInvoice.status;
+            invoiceObj.id = queriedInvoice.id;
             setDoc(docRef, invoiceObj);
             navigate("/invoices");
           })}
