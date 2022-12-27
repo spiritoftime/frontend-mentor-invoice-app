@@ -85,7 +85,13 @@ const ViewInvoice = () => {
         <StatusBox
           width="fit-content"
           status={queriedInvoice.status}
-          color={queriedInvoice.status === "Pending" ? "#FF8F00" : "#33D69F"}
+          color={
+            queriedInvoice.status === "Pending"
+              ? "#FF8F00"
+              : queriedInvoice.status === "Paid"
+              ? "#33D69F"
+              : "#DFE3FA"
+          }
         ></StatusBox>
         <Flex
           position="absolute"
@@ -155,6 +161,7 @@ const ViewInvoice = () => {
             <FooterButton
               onClick={() => {
                 setDoc(docRef, { status: "Paid" }, { merge: true });
+                navigate("/invoices");
               }}
               color="#7C5DFA"
               text="Mark as Paid"

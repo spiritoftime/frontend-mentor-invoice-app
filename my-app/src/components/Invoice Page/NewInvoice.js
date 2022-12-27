@@ -59,14 +59,7 @@ const NewInvoice = () => {
         <Text color="darkThemeWhite">New Invoice</Text>
       </Flex>
       <FormProvider {...methods}>
-        <Box
-          onSubmit={handleSubmit((data) => {
-            const invoiceObj = createInvoiceObj(data);
-            console.log(invoiceObj);
-            addDoc(collectionRef, invoiceObj);
-          })}
-          as="form"
-        >
+        <Box as="form">
           <Stack direction="column" gap={10} p={6} align="center">
             <BillFrom></BillFrom>
             <BillTo></BillTo>
@@ -163,8 +156,22 @@ const NewInvoice = () => {
                   </ModalFooter>
                 </ModalContent>
               </Modal>
-              <FooterButton color="#373B53" text="Save as Draft"></FooterButton>
               <FooterButton
+                color="#373B53"
+                onClick={handleSubmit((data) => {
+                  const invoiceObj = createInvoiceObj(data);
+                  invoiceObj.status = "Draft";
+                  addDoc(collectionRef, invoiceObj);
+                  navigate("/invoices");
+                })}
+                text="Save as Draft"
+              ></FooterButton>
+              <FooterButton
+                onClick={handleSubmit((data) => {
+                  const invoiceObj = createInvoiceObj(data);
+                  addDoc(collectionRef, invoiceObj);
+                  navigate("/invoices");
+                })}
                 type="submit"
                 color="#7C5DFA"
                 text="Save & Send"

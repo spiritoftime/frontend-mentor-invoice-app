@@ -123,7 +123,7 @@ const EditInvoice = () => {
         <Box
           onSubmit={handleSubmit((data) => {
             const invoiceObj = createInvoiceObj(data);
-            console.log(invoiceObj);
+            invoiceObj.status = queriedInvoice.status;
             setDoc(docRef, invoiceObj);
             navigate("/invoices");
           })}
