@@ -16,8 +16,10 @@ const ItemArticle = ({ id, itemArticles, setItemArticles }) => {
           objKey={`${id}.itemName`}
           color="darkThemeWhite"
           label="Item Name"
-          defaultValue=""
           type="text"
+          validationObj={{
+            required: "Required",
+          }}
         ></FormInput>
       </GridItem>
       <GridItem>
@@ -25,8 +27,10 @@ const ItemArticle = ({ id, itemArticles, setItemArticles }) => {
           objKey={`${id}.qty`}
           color="darkThemeWhite"
           label="Qty."
-          defaultValue=""
           type="number"
+          validationObj={{
+            required: "Required",
+          }}
         ></FormInput>
       </GridItem>
       <GridItem>
@@ -34,8 +38,10 @@ const ItemArticle = ({ id, itemArticles, setItemArticles }) => {
           objKey={`${id}.price`}
           color="darkThemeWhite"
           label="Price"
-          defaultValue=""
           type="number"
+          validationObj={{
+            required: "Required",
+          }}
         ></FormInput>
       </GridItem>
       <GridItem>
@@ -43,7 +49,9 @@ const ItemArticle = ({ id, itemArticles, setItemArticles }) => {
           objKey={`${id}.total`}
           color="darkThemeWhite"
           label="Total"
-          defaultValue=""
+          validationObj={{
+            required: "Required",
+          }}
           number=""
         ></FormInput>
       </GridItem>

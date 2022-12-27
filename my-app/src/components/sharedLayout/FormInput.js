@@ -1,15 +1,13 @@
 import React from "react";
-import {
-  FormLabel,
-  FormErrorMessage,
-  Input,
-  Box,
-  FormHelperText,
-} from "@chakra-ui/react";
+import { FormLabel, Input, Box, Text } from "@chakra-ui/react";
+import { ErrorMessage } from "@hookform/error-message";
 import { useFormContext } from "react-hook-form";
 import { useParams } from "react-router-dom";
-const FormInput = ({ label, type, color, objKey }) => {
-  const { register } = useFormContext();
+const FormInput = ({ label, type, color, objKey, validationObj = {} }) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   const params = useParams();
 
@@ -26,12 +24,27 @@ const FormInput = ({ label, type, color, objKey }) => {
           {label}
         </FormLabel>
         <Input
-          {...register(objKey)}
+          {...register(objKey, validationObj)}
           height="40px"
           color={color}
           border="none"
           bg="darkThemeInput"
           type={type}
+        />
+
+        <ErrorMessage
+          errors={errors}
+          name={objKey}
+          render={({ message }) => (
+            <Text
+              fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+              lineHeight="1.4"
+              fontWeight="500"
+              color="tomato"
+            >
+              {message}
+            </Text>
+          )}
         />
       </Box>
     );
@@ -47,12 +60,26 @@ const FormInput = ({ label, type, color, objKey }) => {
         {label}
       </FormLabel>
       <Input
-        {...register(objKey)}
+        {...register(objKey, validationObj)}
         height="40px"
         color={color}
         border="none"
         bg="darkThemeInput"
         type={type}
+      />
+      <ErrorMessage
+        errors={errors}
+        name={objKey}
+        render={({ message }) => (
+          <Text
+            fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+            lineHeight="1.4"
+            fontWeight="500"
+            color="tomato"
+          >
+            {message}
+          </Text>
+        )}
       />
     </Box>
   );

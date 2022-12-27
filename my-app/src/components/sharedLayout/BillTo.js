@@ -7,9 +7,9 @@ const BillTo = () => {
     <Box width="100%" display="flex" flexDirection="column" gap={6}>
       <Text
         fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-        color="rgba(124, 93, 250, 1)"
-        fontWeight="500"
         lineHeight="1.4"
+        fontWeight="500"
+        color="rgba(124, 93, 250, 1)"
       >
         Bill To
       </Text>
@@ -20,6 +20,9 @@ const BillTo = () => {
             color="darkThemeWhite"
             label="Client's Name"
             type="text"
+            validationObj={{
+              required: "Required",
+            }}
           ></FormInput>
         </GridItem>
         <GridItem colSpan={2}>
@@ -28,6 +31,13 @@ const BillTo = () => {
             color="darkThemeWhite"
             label="Client's Email"
             type="text"
+            validationObj={{
+              required: "Required",
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "Entered value does not match email format",
+              },
+            }}
           ></FormInput>
         </GridItem>
         <GridItem colSpan={2}>
@@ -36,6 +46,9 @@ const BillTo = () => {
             color="darkThemeWhite"
             label="Street Address"
             type="text"
+            validationObj={{
+              required: "Required",
+            }}
           ></FormInput>
         </GridItem>
         <GridItem>
@@ -44,6 +57,9 @@ const BillTo = () => {
             color="darkThemeWhite"
             label="City"
             type="text"
+            validationObj={{
+              required: "Required",
+            }}
           ></FormInput>
         </GridItem>
         <GridItem>
@@ -52,6 +68,17 @@ const BillTo = () => {
             color="darkThemeWhite"
             label="Post Code"
             type="text"
+            validationObj={{
+              required: "Required",
+              maxLength: {
+                value: 6,
+                message: "max length is 6",
+              },
+              pattern: {
+                value: /^[0-9]+$/,
+                message: "post code should only be numbers",
+              },
+            }}
           ></FormInput>
         </GridItem>
         <GridItem colSpan={2}>
@@ -60,6 +87,9 @@ const BillTo = () => {
             color="darkThemeWhite"
             label="Country"
             type="text"
+            validationObj={{
+              required: "Required",
+            }}
           ></FormInput>
         </GridItem>
         <GridItem colSpan={2}>
@@ -68,6 +98,9 @@ const BillTo = () => {
             label="Invoice Date"
             color="darkThemeGrey"
             type="date"
+            validationObj={{
+              required: "Required",
+            }}
           ></FormInput>
         </GridItem>
         <GridItem colSpan={2}>
@@ -77,6 +110,9 @@ const BillTo = () => {
             color="darkThemeGrey"
             fontWeight="500"
             lineHeight="1.4"
+            validationObj={{
+              required: "Required",
+            }}
           >
             Payment Terms
           </FormLabel>
@@ -89,6 +125,9 @@ const BillTo = () => {
             label="Project / Description"
             defaultValue=""
             type="text"
+            validationObj={{
+              required: "Required",
+            }}
           ></FormInput>
         </GridItem>
       </Grid>

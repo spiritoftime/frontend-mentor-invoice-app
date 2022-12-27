@@ -63,7 +63,7 @@ const NewInvoice = () => {
           <Stack direction="column" gap={10} p={6} align="center">
             <BillFrom></BillFrom>
             <BillTo></BillTo>
-            <Stack direction="column">
+            <Stack width="100%" direction="column">
               <Text
                 fontSize="clamp(1.15rem, 0.9rem + 2vw, 2.4rem)"
                 color="rgba(119, 127, 152, 1)"
@@ -157,6 +157,7 @@ const NewInvoice = () => {
                 </ModalContent>
               </Modal>
               <FooterButton
+                type="submit"
                 color="#373B53"
                 onClick={handleSubmit((data) => {
                   const invoiceObj = createInvoiceObj(data);

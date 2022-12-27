@@ -21,6 +21,9 @@ const BillFrom = () => {
             defaultValue=""
             type="text"
             color="darkThemeWhite"
+            validationObj={{
+              required: "Required",
+            }}
           ></FormInput>
         </GridItem>
         <GridItem>
@@ -30,6 +33,9 @@ const BillFrom = () => {
             label="City"
             defaultValue=""
             type="text"
+            validationObj={{
+              required: "Required",
+            }}
           ></FormInput>
         </GridItem>
         <GridItem>
@@ -39,6 +45,17 @@ const BillFrom = () => {
             label="Post Code"
             defaultValue=""
             type="text"
+            validationObj={{
+              required: "Required",
+              maxLength: {
+                value: 6,
+                message: "max length is 6",
+              },
+              pattern: {
+                value: /^[0-9]+$/,
+                message: "post code should only be numbers",
+              },
+            }}
           ></FormInput>
         </GridItem>
         <GridItem colSpan={2}>
@@ -48,6 +65,9 @@ const BillFrom = () => {
             label="Country"
             defaultValue=""
             type="text"
+            validationObj={{
+              required: "Required",
+            }}
           ></FormInput>
         </GridItem>
       </Grid>

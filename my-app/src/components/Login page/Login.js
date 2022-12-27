@@ -4,6 +4,7 @@ import {
   Card,
   CardHeader,
   Text,
+  Flex,
   Heading,
   CardBody,
   CardFooter,
@@ -19,44 +20,51 @@ const Login = () => {
   let googleProvider = new GoogleAuthProvider();
 
   return (
-    <Card align="center" backgroundColor="darkThemeGrey" maxW="sm">
-      <CardHeader>
-        <Heading size="md">Login </Heading>
-      </CardHeader>
-      <Button
-        onClick={() => {
-          signInWithPopup(auth, googleProvider).then((res) => {
-            console.log({
-              uid: res.user.uid,
-              displayName: res.user.displayName,
-              photoUrl: res.user.photoURL,
-              isLogin: true,
-            });
-            dispatch(
-              LoginActions.getLoginDetails({
+    <Flex
+      minHeight="100vh"
+      backgroundColor="darkThemeGrey"
+      justify="center"
+      align="center"
+    >
+      <Card boxShadow="md" backgroundColor="whiteAlpha.900" align="center">
+        <CardHeader>
+          <Heading size="md">Login </Heading>
+        </CardHeader>
+        <Button
+          onClick={() => {
+            signInWithPopup(auth, googleProvider).then((res) => {
+              console.log({
                 uid: res.user.uid,
                 displayName: res.user.displayName,
                 photoUrl: res.user.photoURL,
                 isLogin: true,
-              })
-            );
-            navigate("/invoices");
-          });
-        }}
-        justifyContent="center"
-        borderRadius="30px"
-        width="min(100%, 327px)"
-        height="48px"
-        variant="solid"
-        color="darkThemeGrey"
-        bg="#1E2139"
-        fontSize="0.75rem"
-        fontWeight="700"
-        lineHeight="0.9rem"
-      >
-        Login with Google
-      </Button>
-    </Card>
+              });
+              dispatch(
+                LoginActions.getLoginDetails({
+                  uid: res.user.uid,
+                  displayName: res.user.displayName,
+                  photoUrl: res.user.photoURL,
+                  isLogin: true,
+                })
+              );
+              navigate("/invoices");
+            });
+          }}
+          justifyContent="center"
+          borderRadius="30px"
+          width="min(100%, 327px)"
+          height="48px"
+          variant="solid"
+          color="darkThemeGrey"
+          bg="#1E2139"
+          fontSize="0.75rem"
+          fontWeight="700"
+          lineHeight="0.9rem"
+        >
+          Login with Google
+        </Button>
+      </Card>
+    </Flex>
   );
 };
 
