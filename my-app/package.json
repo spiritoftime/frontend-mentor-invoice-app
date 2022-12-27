@@ -1,5 +1,6 @@
 {
   "name": "my-app",
+  "homepage": "https://spiritoftime.github.io/frontend-mentor-invoice-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,6 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "firebase": "^9.15.0",
     "framer-motion": "^7.10.2",
+    "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.41.0",
@@ -22,6 +24,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
