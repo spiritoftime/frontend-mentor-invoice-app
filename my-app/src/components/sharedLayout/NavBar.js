@@ -7,10 +7,13 @@ import {
   Box,
   Stack,
   HStack,
+  Avatar,
   VStack,
 } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 import image from "../../assets/image-avatar.jpg";
 const NavBar = () => {
+  const { displayName, photoUrl } = useSelector((state) => state.Login);
   return (
     <Stack
       justify="space-between"
@@ -65,13 +68,7 @@ const NavBar = () => {
           height="100%"
           alignItems="center"
         >
-          <Image
-            sx={{ borderRadius: "50%" }}
-            alt="user profile"
-            src={image}
-            width="32px"
-            height="32px"
-          />
+          <Avatar name={displayName} src={photoUrl} />
         </Box>
       </Flex>
     </Stack>
