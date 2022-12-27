@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/frontend-mentor-invoice-app/static/css/main.d1761136.css",
-    "main.js": "/frontend-mentor-invoice-app/static/js/main.d1727e97.js",
+    "main.js": "/frontend-mentor-invoice-app/static/js/main.0ea469cb.js",
     "static/js/787.28cb0dcd.chunk.js": "/frontend-mentor-invoice-app/static/js/787.28cb0dcd.chunk.js",
     "index.html": "/frontend-mentor-invoice-app/index.html",
     "main.d1761136.css.map": "/frontend-mentor-invoice-app/static/css/main.d1761136.css.map",
-    "main.d1727e97.js.map": "/frontend-mentor-invoice-app/static/js/main.d1727e97.js.map",
+    "main.0ea469cb.js.map": "/frontend-mentor-invoice-app/static/js/main.0ea469cb.js.map",
     "787.28cb0dcd.chunk.js.map": "/frontend-mentor-invoice-app/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d1761136.css",
-    "static/js/main.d1727e97.js"
+    "static/js/main.0ea469cb.js"
   ]
 }
