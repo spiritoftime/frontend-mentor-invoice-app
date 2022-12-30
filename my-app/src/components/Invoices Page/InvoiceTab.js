@@ -83,10 +83,7 @@ const InvoiceTab = () => {
         <Button
           borderRadius="30px"
           onClick={redirectRouteHandler}
-          justify="space-between"
           backgroundColor="#7C5DFA"
-          justifyContent="flex-end"
-          width={{ base: "90px", sm: "150px" }}
           height="44px"
           variant="solid"
           color="white"
@@ -99,7 +96,6 @@ const InvoiceTab = () => {
               display="flex"
               width="32px"
               height="32px"
-              marginRight={{ base: "0px", sm: "16px" }}
               borderRadius="50%"
               backgroundColor="white"
               alignItems="center"

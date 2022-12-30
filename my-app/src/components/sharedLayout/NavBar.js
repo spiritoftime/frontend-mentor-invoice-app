@@ -1,17 +1,8 @@
 import React from "react";
 import classes from "./navbar.module.css";
-import {
-  Image,
-  Flex,
-  Spacer,
-  Box,
-  Stack,
-  HStack,
-  Avatar,
-  VStack,
-} from "@chakra-ui/react";
+import { Flex, Box, Stack, Avatar } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import image from "../../assets/image-avatar.jpg";
+
 const NavBar = () => {
   const { displayName, photoUrl } = useSelector((state) => state.Login);
   return (

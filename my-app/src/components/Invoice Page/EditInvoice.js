@@ -24,14 +24,7 @@ import { database } from "../../firestore";
 import { createInvoiceObj } from "../helper-functions/createInvoiceObj";
 import { useParams } from "react-router-dom";
 import convertDateToInputDate from "../helper-functions/convertDateToInputDate";
-import {
-  doc,
-  addDoc,
-  setDoc,
-  deleteDoc,
-  updateDoc,
-  collection,
-} from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import GobackButton from "../UI/GobackButton";
 import createItemsArr from "../helper-functions/createItemsArr";
@@ -79,11 +72,7 @@ const EditInvoice = () => {
     defaultValues: preLoadedValues,
     shouldUnregister: true,
   });
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = methods;
+  const { handleSubmit } = methods;
   let initialItemArticles = ["item 1"];
   if (Object.keys(params).length !== 0) {
     const arr = [];
@@ -99,143 +88,145 @@ const EditInvoice = () => {
   };
 
   return (
-    <Box bg="darkThemeBg">
-      <GobackButton ml="18px"></GobackButton>
-      <Flex
-        fontSize="clamp(1.5rem, 0.9rem + 2vw, 1.6rem)"
-        display="flex"
-        justify="flex-start"
-        alignItems="center"
-        fontWeight="700"
-        lineHeight="1.25"
-        paddingLeft={6}
-        paddingTop={6}
-      >
-        <Text color="darkThemeWhite">
-          Edit{" "}
-          <Text color="hashColor" as="span">
-            #
-          </Text>
-          {queriedInvoice.id}
-        </Text>
-      </Flex>
-      <FormProvider {...methods}>
-        <Box
-          onSubmit={handleSubmit((data) => {
-            const invoiceObj = createInvoiceObj(data);
-            invoiceObj.status = queriedInvoice.status;
-            invoiceObj.id = queriedInvoice.id;
-            setDoc(docRef, invoiceObj);
-            navigate("/invoices");
-          })}
-          as="form"
+    <Box minHeight="100vh" bg="darkThemeBg">
+      <Box margin="0 auto" width={{ sm: "616px", md: "720px" }}>
+        <GobackButton ml="18px"></GobackButton>
+        <Flex
+          fontSize="clamp(1.5rem, 0.9rem + 2vw, 1.6rem)"
+          display="flex"
+          justify="flex-start"
+          alignItems="center"
+          fontWeight="700"
+          lineHeight="1.25"
+          paddingLeft={6}
+          paddingTop={6}
         >
-          <Stack direction="column" gap={10} p={6} align="center">
-            <BillFrom></BillFrom>
-            <BillTo></BillTo>
-            <Stack width="100%" direction="column">
-              <Text
-                fontSize="clamp(1.15rem, 0.9rem + 2vw, 2.4rem)"
-                color="rgba(119, 127, 152, 1)"
-                fontWeight="700"
-                marginBottom={6}
-              >
-                Item List
-              </Text>
-              <Stack direction="column" gap={12}>
-                {itemArticles.map((itemNumber) => (
-                  <ItemArticle
-                    itemArticles={itemArticles}
-                    setItemArticles={setItemArticles}
-                    key={itemNumber}
-                    id={itemNumber}
-                  ></ItemArticle>
-                ))}
-              </Stack>
-            </Stack>
-            <Button
-              onClick={addItem}
-              justifyContent="center"
-              borderRadius="30px"
-              width="min(100%, 327px)"
-              height="48px"
-              variant="solid"
-              color="darkThemeGrey"
-              bg="#1E2139"
-              fontSize="0.75rem"
-              fontWeight="700"
-              lineHeight="0.9rem"
-            >
-              + Add New Item
-            </Button>
-          </Stack>
-          <Flex
-            position="relative"
-            bottom="-82px"
-            left="0"
-            width="100%"
-            backgroundColor="darkThemeInput"
-            margin="0 auto"
-            justify="end"
+          <Text color="darkThemeWhite">
+            Edit{" "}
+            <Text color="hashColor" as="span">
+              #
+            </Text>
+            {queriedInvoice.id}
+          </Text>
+        </Flex>
+        <FormProvider {...methods}>
+          <Box
+            onSubmit={handleSubmit((data) => {
+              const invoiceObj = createInvoiceObj(data);
+              invoiceObj.status = queriedInvoice.status;
+              invoiceObj.id = queriedInvoice.id;
+              setDoc(docRef, invoiceObj);
+              navigate("/invoices");
+            })}
+            as="form"
           >
-            <ButtonGroup
-              justifyContent="space-between"
-              gap="8px"
-              padding="21px 10px"
+            <Stack direction="column" gap={10} p={6} align="center">
+              <BillFrom></BillFrom>
+              <BillTo></BillTo>
+              <Stack width="100%" direction="column">
+                <Text
+                  fontSize="clamp(1.15rem, 0.9rem + 2vw, 2.4rem)"
+                  color="rgba(119, 127, 152, 1)"
+                  fontWeight="700"
+                  marginBottom={6}
+                >
+                  Item List
+                </Text>
+                <Stack direction="column" gap={12}>
+                  {itemArticles.map((itemNumber) => (
+                    <ItemArticle
+                      itemArticles={itemArticles}
+                      setItemArticles={setItemArticles}
+                      key={itemNumber}
+                      id={itemNumber}
+                    ></ItemArticle>
+                  ))}
+                </Stack>
+              </Stack>
+              <Button
+                onClick={addItem}
+                justifyContent="center"
+                borderRadius="30px"
+                width="min(100%, 327px)"
+                height="48px"
+                variant="solid"
+                color="darkThemeGrey"
+                bg="#1E2139"
+                fontSize="0.75rem"
+                fontWeight="700"
+                lineHeight="0.9rem"
+              >
+                + Add New Item
+              </Button>
+            </Stack>
+            <Flex
+              position="relative"
+              bottom="-82px"
+              left="0"
+              width="100%"
+              backgroundColor={{ base: "darkThemeInput", sm: "darkThemeBg" }}
+              margin="0 auto"
+              justify="end"
             >
-              <FooterButton
-                onClick={onOpen}
-                color="#252945"
-                text="Cancel"
-              ></FooterButton>
-              <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent width="90%" background="darkThemeInput">
-                  <ModalHeader
-                    color="darkThemeWhite"
-                    fontSize="clamp(1.5rem, 0.9rem + 2vw, 1.6rem)"
-                    fontWeight="700"
-                    lineHeight="1.25"
-                  >
-                    Confirm Discard
-                  </ModalHeader>
-                  <ModalCloseButton />
-                  <ModalBody
-                    fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-                    color="darkThemeGreyWhite"
-                    fontWeight="500"
-                    lineHeight="1.4"
-                  >
-                    Are you sure you want to discard changes? Your edits will
-                    not be saved.
-                  </ModalBody>
+              <ButtonGroup
+                justifyContent="space-between"
+                gap="8px"
+                padding="21px 10px"
+              >
+                <FooterButton
+                  onClick={onOpen}
+                  color="#252945"
+                  text="Cancel"
+                ></FooterButton>
+                <Modal isOpen={isOpen} onClose={onClose}>
+                  <ModalOverlay />
+                  <ModalContent width="90%" background="darkThemeInput">
+                    <ModalHeader
+                      color="darkThemeWhite"
+                      fontSize="clamp(1.5rem, 0.9rem + 2vw, 1.6rem)"
+                      fontWeight="700"
+                      lineHeight="1.25"
+                    >
+                      Confirm Discard
+                    </ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody
+                      fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                      color="darkThemeGreyWhite"
+                      fontWeight="500"
+                      lineHeight="1.4"
+                    >
+                      Are you sure you want to discard changes? Your edits will
+                      not be saved.
+                    </ModalBody>
 
-                  <ModalFooter gap={2}>
-                    <FooterButton
-                      onClick={onClose}
-                      color="#252945"
-                      text="Cancel"
-                    ></FooterButton>
-                    <FooterButton
-                      onClick={async () => {
-                        navigate("/invoices");
-                      }}
-                      color="#EC5757"
-                      text="Discard"
-                    ></FooterButton>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
+                    <ModalFooter gap={2}>
+                      <FooterButton
+                        onClick={onClose}
+                        color="#252945"
+                        text="Cancel"
+                      ></FooterButton>
+                      <FooterButton
+                        onClick={async () => {
+                          navigate("/invoices");
+                        }}
+                        color="#EC5757"
+                        text="Discard"
+                      ></FooterButton>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
 
-              <FooterButton
-                type="submit"
-                color="#7C5DFA"
-                text="Save Changes"
-              ></FooterButton>
-            </ButtonGroup>
-          </Flex>
-        </Box>
-      </FormProvider>
+                <FooterButton
+                  type="submit"
+                  color="#7C5DFA"
+                  text="Save Changes"
+                ></FooterButton>
+              </ButtonGroup>
+            </Flex>
+          </Box>
+        </FormProvider>
+      </Box>
     </Box>
   );
 };

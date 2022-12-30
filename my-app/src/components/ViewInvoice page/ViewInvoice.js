@@ -194,9 +194,11 @@ const ViewInvoice = () => {
             <Flex direction="column">
               <GridItem
                 fontSize={{
-                  base: "clamp(0.65rem, 0.4rem + 2vw, 1.6rem)",
+                  base: "0.75rem",
                   sm: "1rem",
                 }}
+                lineHeight="1.25"
+                letterSpacing="-0.25px"
                 display="flex"
                 justify="center"
                 alignItems="center"
@@ -208,22 +210,20 @@ const ViewInvoice = () => {
               </GridItem>
               <Text
                 fontSize={{
-                  base: "clamp(0.65rem, 0.4rem + 2vw, 1.6rem)",
-                  sm: "0.75rem",
+                  base: "0.75rem",
+                  sm: "1rem",
                 }}
+                lineHeight="1.25"
+                letterSpacing="-0.25px"
                 color="darkThemeGreyWhite"
                 fontWeight="500"
-                lineHeight="1.25"
               >
                 {queriedInvoice.billTo.invoice.description}
               </Text>
             </Flex>
             <Flex
               textAlign={{ base: "revert", sm: "right" }}
-              fontSize={{
-                base: "clamp(0.65rem, 0.4rem + 2vw, 1.6rem)",
-                sm: "0.6875rem",
-              }}
+              fontSize="0.6875rem"
               fontWeight="500"
               lineHeight="1.6"
               color="darkThemeGreyWhite"
@@ -258,10 +258,7 @@ const ViewInvoice = () => {
                   Invoice Date
                 </Text>
                 <Text
-                  fontSize={{
-                    base: "clamp(0.95rem, 0.5rem + 2vw, 2.4rem)",
-                    sm: "0.9375rem",
-                  }}
+                  fontSize="0.9375rem"
                   lineHeight="1.33"
                   letterSpacing="-0.31px"
                   color="darkThemeWhite"
@@ -279,10 +276,7 @@ const ViewInvoice = () => {
                   Payment Due
                 </Text>
                 <Text
-                  fontSize={{
-                    base: "clamp(0.95rem, 0.5rem + 2vw, 2.4rem)",
-                    sm: "0.9375rem",
-                  }}
+                  fontSize="0.9375rem"
                   lineHeight="1.33"
                   letterSpacing="-0.31px"
                   color="darkThemeWhite"
@@ -300,10 +294,7 @@ const ViewInvoice = () => {
                   Bill To
                 </Text>
                 <Text
-                  fontSize={{
-                    base: "clamp(0.95rem, 0.5rem + 2vw, 2.4rem)",
-                    sm: "0.9375rem",
-                  }}
+                  fontSize="0.9375rem"
                   lineHeight="1.33"
                   letterSpacing="-0.31px"
                   color="darkThemeWhite"
@@ -313,10 +304,7 @@ const ViewInvoice = () => {
                   {queriedInvoice.billTo.clientName}
                 </Text>
                 <Flex
-                  fontSize={{
-                    base: "clamp(0.65rem, 0.4rem + 2vw, 1.6rem)",
-                    sm: "0.6875rem",
-                  }}
+                  fontSize="0.6875rem"
                   fontWeight="500"
                   lineHeight="1.6"
                   color="darkThemeGreyWhite"
@@ -332,9 +320,12 @@ const ViewInvoice = () => {
             <Flex lineHeight="1.4" direction="column">
               <Text
                 fontSize={{
-                  base: "clamp(0.65rem, 0.4rem + 2vw, 1.6rem)",
-                  sm: "0.6875rem",
+                  base: "0.75rem",
+                  sm: "1rem",
                 }}
+                lineHeight="1.25"
+                letterSpacing="-0.25px"
+                marginBottom={{ base: "8px", sm: "12px" }}
                 color="darkThemeGreyWhite"
                 fontWeight="500"
                 direction="column"
@@ -342,10 +333,7 @@ const ViewInvoice = () => {
                 Sent to
               </Text>
               <Text
-                fontSize={{
-                  base: "clamp(0.95rem, 0.5rem + 2vw, 2.4rem)",
-                  sm: "0.9375rem",
-                }}
+                fontSize="0.9375rem"
                 lineHeight="1.33"
                 letterSpacing="-0.31px"
                 color="darkThemeWhite"
@@ -362,7 +350,7 @@ const ViewInvoice = () => {
           width={{ base: "73%", sm: "624px" }}
         >
           <Flex
-            borderRadius="8px 8px 0 0 "
+            borderRadius="8px 8px 0 0"
             alignItems="start"
             color="darkThemeGrey"
             margin="0 auto"

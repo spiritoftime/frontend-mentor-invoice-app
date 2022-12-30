@@ -6,10 +6,14 @@ const FooterButton = (props) => {
       type={props.type}
       onClick={props.onClick}
       borderRadius="30px"
-      fontSize="clamp(0.45rem, 0.2rem + 2vw, 1.6rem)"
+      fontSize={{
+        base: "0.75rem",
+        sm: "1rem",
+      }}
+      lineHeight="1.25"
+      letterSpacing="-0.25px"
       color="darkThemeWhite"
       fontWeight="700"
-      lineHeight="1.4"
       backgroundColor={props.color}
     >
       {props.text}
