@@ -10,7 +10,11 @@ const NavBar = () => {
       justify="space-between"
       backgroundColor="darkThemeInput"
       as="nav"
-      direction="row"
+      direction={{ md: "column" }}
+      position={{ base: "initial", md: "fixed" }}
+      height={{ md: "100%" }}
+      width={{ md: "72px" }}
+      borderRadius={{ md: "0px 30px 0 0" }}
     >
       <Flex
         justify="center"
@@ -32,13 +36,23 @@ const NavBar = () => {
           ></path>
         </svg>
       </Flex>
-      <Flex justify="center" align="center" gap="24px">
+      <Flex
+        margin={{ md: "0 auto" }}
+        direction={{ md: "column" }}
+        justify="center"
+        align="center"
+        gap="24px"
+      >
         <Box
-          paddingRight="23px"
-          borderRight="1px solid rgba(73, 78, 110, 1)"
+          paddingRight={{ base: "23px", md: 0 }}
+          borderRight={{ base: "1px solid rgba(73, 78, 110, 1)", md: "0px" }}
           display="flex"
           height="100%"
+          paddingBottom={{ md: "23px" }}
           alignItems="center"
+          justifyContent="center"
+          width="100%"
+          borderBottom={{ md: "1px solid rgba(73, 78, 110, 1)" }}
         >
           <svg
             width="20px"
@@ -55,11 +69,17 @@ const NavBar = () => {
         </Box>
         <Box
           display="flex"
-          paddingRight="23px"
+          paddingRight={{ base: "23px", md: 0 }}
+          paddingBottom={{ md: "23px" }}
           height="100%"
           alignItems="center"
         >
-          <Avatar name={displayName} src={photoUrl} />
+          <Avatar
+            width="32px"
+            height="32px"
+            name={displayName}
+            src={photoUrl}
+          />
         </Box>
       </Flex>
     </Stack>

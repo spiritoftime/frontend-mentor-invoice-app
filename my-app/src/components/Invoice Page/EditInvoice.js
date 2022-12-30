@@ -160,7 +160,7 @@ const EditInvoice = () => {
               </Button>
             </Stack>
             <Flex
-              position="relative"
+              position={{ base: "relative", sm: "initial" }}
               bottom="-82px"
               left="0"
               width="100%"

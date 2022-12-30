@@ -13,7 +13,8 @@ const invoiceSlice = createSlice({
     },
     filterInvoices(state, action) {
       state.filteredInvoices = state.invoices.filter((invoice) => {
-        if (action.payload === "") return state.invoices;
+        console.log(action.payload);
+        if (action.payload === "Filter") return state.invoices;
         return invoice.status === action.payload;
       });
       state.filteredBy = action.payload;
