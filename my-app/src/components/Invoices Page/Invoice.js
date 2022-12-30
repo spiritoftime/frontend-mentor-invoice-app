@@ -18,49 +18,53 @@ const Invoice = (props) => {
 
   return (
     <Card
+      width={{ base: "90%", sm: "672px", "2xl": "730px" }}
       onClick={() => {
         navigate(`/invoices/${props.docId}`);
       }}
       color="white"
       margin="0 auto"
-      width="90%"
       bg="darkThemeInput"
     >
       <CardBody>
-        <Grid gap="24px" templateColumns="repeat(2,1fr)">
-          <GridItem
-            fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-            display="flex"
-            justify="center"
-            alignItems="center"
-          >
+        <Grid
+          fontSize="0.75rem"
+          lineHeight="1.25"
+          letterSpacing="-0.25px"
+          alignItems="center"
+          gridAutoFlow={{ base: "inherit", sm: "column", "2xl": "column" }}
+          gap="24px"
+          templateColumns={{ base: "repeat(2,1fr)", sm: "auto", "2xl": "auto" }}
+        >
+          <GridItem display="flex" justify="center" alignItems="center">
             <Text color="hashColor">#</Text>
-            <Text color="darkThemeWhite" fontWeight="700" lineHeight="1.4">
+            <Text color="darkThemeWhite" fontWeight="700">
               {props.id}
             </Text>
           </GridItem>
-          <GridItem alignSelf="center" justifySelf="end">
-            <Text
-              fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-              color="darkThemeGrey"
-              fontWeight="700"
-              lineHeight="1.4"
-            >
+          <GridItem
+            gridColumnStart={{ base: "initial", sm: "3" }}
+            alignSelf="center"
+            justifySelf="end"
+          >
+            <Text color="darkThemeGrey" fontWeight="500">
               {props.clientName}
             </Text>
           </GridItem>
-          <GridItem>
-            <Flex gap="4px" direction="column" justify="space-between">
-              <Text
-                fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-                color="darkThemeGrey"
-                fontWeight="500"
-                lineHeight="1.4"
-              >
+          <GridItem gridColumnStart={{ base: "initial", sm: "2" }}>
+            <Flex
+              gap="4px"
+              alignItems={{ base: "flex-start", sm: "center" }}
+              direction={{ base: "column", sm: "row" }}
+              justify="space-between"
+            >
+              <Text color="darkThemeGrey" fontWeight="500">
                 Due {props.paymentDue}
               </Text>
               <Text
-                fontSize="clamp(1.15rem, 0.9rem + 2vw, 2.4rem)"
+                fontSize="1rem"
+                letterSpacing="-0.8px"
+                lineHeight="1.5"
                 color="white"
                 fontWeight="700"
               >
@@ -68,12 +72,7 @@ const Invoice = (props) => {
               </Text>
             </Flex>
           </GridItem>
-          <GridItem
-            alignSelf="center"
-            justifySelf="end"
-            colStart={2}
-            colEnd={3}
-          >
+          <GridItem alignSelf="center" justifySelf="end">
             <StatusBox
               status={props.status}
               color={
@@ -84,6 +83,17 @@ const Invoice = (props) => {
                   : "#DFE3FA"
               }
             ></StatusBox>
+          </GridItem>
+          <GridItem justifySelf="end" display={{ base: "none", sm: "block" }}>
+            <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M1 1l4 4-4 4"
+                stroke="#7C5DFA"
+                stroke-width="2"
+                fill="none"
+                fill-rule="evenodd"
+              />
+            </svg>
           </GridItem>
         </Grid>
       </CardBody>

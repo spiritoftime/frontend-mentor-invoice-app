@@ -29,7 +29,7 @@ const InvoiceTab = () => {
     <Flex
       align="center"
       margin="0 auto"
-      width="90%"
+      width={{ base: "90%", sm: "672px", "2xl": "730px" }}
       justify="space-between"
       height="44px"
     >

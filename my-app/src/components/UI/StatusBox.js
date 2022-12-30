@@ -19,7 +19,7 @@ const StatusBox = (props) => {
         <Text
           fontSize="0.75rem"
           fontWeight="700"
-          lineHeight="1.4"
+          lineHeight="1.25"
           color={props.color}
         >
           {props.status}

@@ -33,16 +33,20 @@ The empty subcollection is also necessary so that when the new user is redirecte
 
 visualisation as follows:
 
-* user document
+- user document
 
-  * invoices (empty at first)
+  - invoices (empty at first)
 
-    * invoice 1
+    - invoice 1
 
-    * invoice 2
+    - invoice 2
 
 edit: so apparently you can have a collectionRef that has not been created! so in my case, i could simply have const collectionRef = collection(database, "users", uid, "invoices");
 
 onsnapshot would have returned an empty array, and i could still achieve what i want!
 
 When i need to add a new invoice, i could just do addDoc(collectionRef, invoiceObj);
+
+(6) How to fix relative links when deploying to gitpages
+at app.js, i had to add /frontend-mentor-invoice-app/ to the first page. i realised that subsequent routes were also screwed.
+any way to fix this without having to manually add all the routes?
