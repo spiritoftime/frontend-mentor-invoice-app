@@ -13,7 +13,6 @@ import {
   GridItem,
   Modal,
   ModalOverlay,
-  Button,
   ModalContent,
   ModalHeader,
   ModalFooter,
@@ -25,7 +24,9 @@ import StatusBox from "../UI/StatusBox";
 import GobackButton from "../UI/GobackButton";
 import FooterButton from "../UI/FooterButton";
 import { useNavigate } from "react-router-dom";
+import useViewPort from "../custom-hooks/useViewPort";
 const ViewInvoice = () => {
+  const width = useViewPort();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { invoiceId } = useParams();
@@ -94,13 +95,13 @@ const ViewInvoice = () => {
           }
         ></StatusBox>
         <Flex
-          position="absolute"
+          position={{ base: "absolute", sm: "revert" }}
           bottom="-56px"
           left="0"
-          width="100%"
+          width={{ base: "100%", sm: "initial" }}
           backgroundColor="darkThemeInput"
-          margin="0 auto"
-          justify="center"
+          margin={{ base: "0 auto", sm: "0 0 0 auto" }}
+          justify={{ base: "center", sm: "flex-end" }}
         >
           <ButtonGroup
             justifyContent="space-between"
@@ -171,7 +172,7 @@ const ViewInvoice = () => {
       </Flex>
       <Flex
         direction="column"
-        borderRadius="8px 8px 0 0"
+        borderRadius="8px"
         padding="24px 24px 0"
         alignItems="start"
         color="darkThemeGrey"
@@ -180,7 +181,7 @@ const ViewInvoice = () => {
         bg="darkThemeInput"
       >
         <Flex width="100%" direction="column" gap={6}>
-          <Flex direction="column" gap="30px">
+          <Flex direction={{ base: "column", xs: "row" }} gap="30px">
             <Flex direction="column">
               <GridItem
                 fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
@@ -286,12 +287,11 @@ const ViewInvoice = () => {
                 </Flex>
               </GridItem>
             </Grid>
-            <Flex direction="column">
+            <Flex lineHeight="1.4" direction="column">
               <Text
                 fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
                 color="darkThemeGreyWhite"
                 fontWeight="500"
-                lineHeight="1.4"
                 direction="column"
               >
                 Sent to
@@ -300,14 +300,18 @@ const ViewInvoice = () => {
                 fontSize="clamp(0.95rem, 0.5rem + 2vw, 2.4rem)"
                 color="darkThemeWhite"
                 fontWeight="700"
-                lineHeight="1.4"
               >
                 {queriedInvoice.billTo.clientEmail}
               </Text>
             </Flex>
           </Flex>
+        </Flex>
+        <Flex
+          direction="column"
+          margin="48px auto 32px"
+          width={{ base: "73%", sm: "624px" }}
+        >
           <Flex
-            direction="column"
             borderRadius="8px 8px 0 0 "
             alignItems="start"
             color="darkThemeGrey"
@@ -316,73 +320,96 @@ const ViewInvoice = () => {
             padding="24px 24px"
             backgroundColor="rgba(37, 41, 69, 1)"
           >
-            <Grid width="100%" rowGap={6}>
+            <Grid width="100%" rowGap={8}>
+              {width < 768 ? (
+                ""
+              ) : (
+                <Flex
+                  fontSize="0.75rem"
+                  lineHeight="1.25"
+                  letterSpacing="-0.25px"
+                  align="center"
+                  justify="space-between"
+                >
+                  <Text>Item Name</Text>
+                  <Text>QTY.</Text>
+                  <Text>Price</Text>
+                  <Text>Total</Text>
+                </Flex>
+              )}
               {Object.keys(queriedInvoice.itemList.items).map((key, idx) => {
-                return (
-                  <GridItem key={idx}>
-                    <Flex align="center" justify="space-between">
-                      <Flex direction="column">
-                        <Text
-                          fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-                          color="darkThemeWhite"
-                          fontWeight="700"
-                          lineHeight="1.4"
-                          direction="column"
-                        >
-                          {key}
-                        </Text>
-                        <Text
-                          fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-                          color="darkThemeGreyWhite"
-                          fontWeight="700"
-                          lineHeight="1.4"
-                          direction="column"
-                        >
-                          {queriedInvoice.itemList.items[key].qty} x £
-                          {queriedInvoice.itemList.items[key].price}
-                        </Text>
-                      </Flex>
-                      <Text
-                        fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                if (width < 768)
+                  return (
+                    <GridItem key={idx}>
+                      <Flex
+                        fontSize="0.75rem"
+                        lineHeight="1.25"
+                        letterSpacing="-0.25px"
                         color="darkThemeWhite"
                         fontWeight="700"
-                        lineHeight="1.4"
-                        direction="column"
+                        align="center"
+                        justify="space-between"
                       >
-                        £{queriedInvoice.itemList.items[key].total}
-                      </Text>
+                        <Flex gap={2} direction="column">
+                          <Text direction="column">{key}</Text>
+                          <Text>
+                            {queriedInvoice.itemList.items[key].qty} x £
+                            {queriedInvoice.itemList.items[key].price}
+                          </Text>
+                        </Flex>
+                        <Text direction="column">
+                          £{queriedInvoice.itemList.items[key].total}
+                        </Text>
+                      </Flex>
+                    </GridItem>
+                  );
+                return (
+                  <GridItem key={idx}>
+                    <Flex
+                      color="darkThemeWhite"
+                      fontSize="0.75rem"
+                      lineHeight="1.25"
+                      fontWeight="700"
+                      letterSpacing="-0.25px"
+                      align="center"
+                      justify="space-between"
+                    >
+                      <Text>{key}</Text>
+                      <Text>{queriedInvoice.itemList.items[key].qty}</Text>
+                      <Text>{queriedInvoice.itemList.items[key].price}</Text>
+                      <Text>£ {queriedInvoice.itemList.items[key].total}</Text>
                     </Flex>
                   </GridItem>
                 );
               })}
             </Grid>
           </Flex>
-        </Flex>
-        <Flex
-          width="100%"
-          borderRadius="0 0 8px 8px"
-          padding="24px"
-          height="80px"
-          marginBottom={6}
-          backgroundColor="rgba(12, 14, 22, 1)"
-        >
-          <Flex width="100%" align="center" justify="space-between">
-            <Text
-              fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-              color="darkThemeGreyWhite"
-              fontWeight="500"
-              lineHeight="1.4"
-            >
-              Amount Due
-            </Text>
-            <Text
-              fontSize="clamp(1.05rem, 0.7rem + 2vw, 3rem)"
-              color="darkThemeWhite"
-              fontWeight="700"
-              lineHeight="1.6"
-            >
-              £{queriedInvoice.itemList.grandTotal}
-            </Text>
+          <Flex
+            width="100%"
+            borderRadius="0 0 8px 8px"
+            padding="24px"
+            height="80px"
+            marginBottom={6}
+            backgroundColor="rgba(12, 14, 22, 1)"
+          >
+            <Flex width="100%" align="center" justify="space-between">
+              <Text
+                fontSize="11px"
+                color="darkThemeGreyWhite"
+                fontWeight="500"
+                lineHeight="1.636"
+              >
+                Amount Due
+              </Text>
+              <Text
+                fontSize="1.25rem"
+                color="darkThemeWhite"
+                fontWeight="700"
+                lineHeight="1.6"
+              >
+                £{queriedInvoice.itemList.grandTotal}
+              </Text>
+            </Flex>
           </Flex>
         </Flex>
       </Flex>
