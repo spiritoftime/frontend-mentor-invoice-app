@@ -17,7 +17,7 @@ function App() {
       <BrowserRouter>
         <NavBar></NavBar>
         <Routes>
-          <Route path="/frontend-mentor-invoice-app/" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/invoices">
             <Route
               index

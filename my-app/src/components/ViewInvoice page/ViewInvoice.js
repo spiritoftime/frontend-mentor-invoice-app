@@ -54,13 +54,17 @@ const ViewInvoice = () => {
     return <Text>Still Loading...</Text>;
   return (
     <Flex
-      alignItems="flex-start"
+      alignItems="center"
       gap="6px"
       direction="column"
       minBlockSize="100vh"
       bg="darkThemeBg"
     >
-      <GobackButton ml="5%"></GobackButton>
+      <Flex justify="center" width={{ base: "100%", sm: "688px" }}>
+        <Flex width={{ base: "90%", sm: "688px" }}>
+          <GobackButton></GobackButton>
+        </Flex>
+      </Flex>
 
       <Flex
         borderRadius="8px"
@@ -69,7 +73,7 @@ const ViewInvoice = () => {
         color="darkThemeGrey"
         margin="32px auto 0 "
         height="95px"
-        width="90%"
+        width={{ base: "90%", sm: "688px" }}
         bg="darkThemeInput"
         justify="space-between"
       >
@@ -173,43 +177,59 @@ const ViewInvoice = () => {
       <Flex
         direction="column"
         borderRadius="8px"
-        padding="24px 24px 0"
+        padding={{ base: "24px 24px 0", sm: "32px 32px 0" }}
         alignItems="start"
         color="darkThemeGrey"
         margin="0 auto 82px"
-        width="90%"
+        width={{ base: "90%", sm: "688px" }}
         bg="darkThemeInput"
       >
         <Flex width="100%" direction="column" gap={6}>
-          <Flex direction={{ base: "column", xs: "row" }} gap="30px">
+          <Flex
+            direction={{ base: "column", sm: "row" }}
+            justify={{ base: "initial", sm: "space-between" }}
+            gap="30px"
+            lineHeight={{ base: "1.25", sm: "1.5" }}
+          >
             <Flex direction="column">
               <GridItem
-                fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                fontSize={{
+                  base: "clamp(0.65rem, 0.4rem + 2vw, 1.6rem)",
+                  sm: "1rem",
+                }}
                 display="flex"
                 justify="center"
                 alignItems="center"
               >
                 <Text color="hashColor">#</Text>
-                <Text color="darkThemeWhite" fontWeight="700" lineHeight="1.4">
+                <Text color="darkThemeWhite" fontWeight="700">
                   {queriedInvoice.id}
                 </Text>
               </GridItem>
               <Text
-                fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                fontSize={{
+                  base: "clamp(0.65rem, 0.4rem + 2vw, 1.6rem)",
+                  sm: "0.75rem",
+                }}
                 color="darkThemeGreyWhite"
                 fontWeight="500"
-                lineHeight="1.4"
+                lineHeight="1.25"
               >
                 {queriedInvoice.billTo.invoice.description}
               </Text>
             </Flex>
             <Flex
-              fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-              color="darkThemeGreyWhite"
+              textAlign={{ base: "revert", sm: "right" }}
+              fontSize={{
+                base: "clamp(0.65rem, 0.4rem + 2vw, 1.6rem)",
+                sm: "0.6875rem",
+              }}
               fontWeight="500"
-              lineHeight="1.4"
-              width="60%"
+              lineHeight="1.6"
+              color="darkThemeGreyWhite"
+              width={{ base: "60%", sm: "fit-content" }}
               direction="column"
+              letterSpacing="-0.23px"
             >
               <Text>{queriedInvoice.billFrom.addressDetails.address}</Text>
               <Text>{queriedInvoice.billFrom.addressDetails.city}</Text>
@@ -217,67 +237,89 @@ const ViewInvoice = () => {
               <Text>{queriedInvoice.billFrom.addressDetails.country}</Text>
             </Flex>
           </Flex>
-          <Flex gap={6} direction="column">
-            <Grid columnGap={6} rowGap={6} templateColumns={"repeat(2,1fr)"}>
+          <Flex
+            gap={{ base: "24px", sm: "90px" }}
+            direction={{ base: "column", sm: "row" }}
+          >
+            <Grid
+              fontSize="0.75rem"
+              lineHeight="1.25"
+              letterSpacing="-0.25px"
+              columnGap={{ base: "24px", sm: "90px" }}
+              rowGap={6}
+              templateColumns={"repeat(2,1fr)"}
+            >
               <GridItem colSpan={1}>
                 <Text
-                  fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-                  color="darkThemeGreyWhite"
+                  marginBottom={{ base: "0px", sm: "12px" }}
                   fontWeight="500"
-                  lineHeight="1.4"
+                  color="darkThemeGreyWhite"
                 >
                   Invoice Date
                 </Text>
                 <Text
-                  fontSize="clamp(0.95rem, 0.5rem + 2vw, 2.4rem)"
+                  fontSize={{
+                    base: "clamp(0.95rem, 0.5rem + 2vw, 2.4rem)",
+                    sm: "0.9375rem",
+                  }}
+                  lineHeight="1.33"
+                  letterSpacing="-0.31px"
                   color="darkThemeWhite"
                   fontWeight="700"
-                  lineHeight="1.4"
                 >
                   {queriedInvoice.billTo.invoice.date}
                 </Text>
               </GridItem>
               <GridItem rowStart={2}>
                 <Text
-                  fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                  marginBottom={{ base: "0px", sm: "12px" }}
                   color="darkThemeGreyWhite"
                   fontWeight="500"
-                  lineHeight="1.4"
                 >
                   Payment Due
                 </Text>
                 <Text
-                  fontSize="clamp(0.95rem, 0.5rem + 2vw, 2.4rem)"
+                  fontSize={{
+                    base: "clamp(0.95rem, 0.5rem + 2vw, 2.4rem)",
+                    sm: "0.9375rem",
+                  }}
+                  lineHeight="1.33"
+                  letterSpacing="-0.31px"
                   color="darkThemeWhite"
                   fontWeight="700"
-                  lineHeight="1.4"
                 >
                   {queriedInvoice.billTo.invoice.paymentDue}
                 </Text>
               </GridItem>
               <GridItem rowSpan={2}>
                 <Text
-                  fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                  marginBottom={{ base: "0px", sm: "12px" }}
                   color="darkThemeGreyWhite"
                   fontWeight="500"
-                  lineHeight="1.4"
                 >
                   Bill To
                 </Text>
                 <Text
-                  fontSize="clamp(0.95rem, 0.5rem + 2vw, 2.4rem)"
+                  fontSize={{
+                    base: "clamp(0.95rem, 0.5rem + 2vw, 2.4rem)",
+                    sm: "0.9375rem",
+                  }}
+                  lineHeight="1.33"
+                  letterSpacing="-0.31px"
                   color="darkThemeWhite"
                   fontWeight="700"
-                  lineHeight="1.4"
-                  marginBottom="8px"
+                  marginBottom={{ base: "8px", sm: "12px" }}
                 >
                   {queriedInvoice.billTo.clientName}
                 </Text>
                 <Flex
-                  fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-                  color="darkThemeGreyWhite"
+                  fontSize={{
+                    base: "clamp(0.65rem, 0.4rem + 2vw, 1.6rem)",
+                    sm: "0.6875rem",
+                  }}
                   fontWeight="500"
-                  lineHeight="1.4"
+                  lineHeight="1.6"
+                  color="darkThemeGreyWhite"
                   direction="column"
                 >
                   <Text>{queriedInvoice.billTo.addressDetails.address}</Text>
@@ -289,7 +331,10 @@ const ViewInvoice = () => {
             </Grid>
             <Flex lineHeight="1.4" direction="column">
               <Text
-                fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
+                fontSize={{
+                  base: "clamp(0.65rem, 0.4rem + 2vw, 1.6rem)",
+                  sm: "0.6875rem",
+                }}
                 color="darkThemeGreyWhite"
                 fontWeight="500"
                 direction="column"
@@ -297,7 +342,12 @@ const ViewInvoice = () => {
                 Sent to
               </Text>
               <Text
-                fontSize="clamp(0.95rem, 0.5rem + 2vw, 2.4rem)"
+                fontSize={{
+                  base: "clamp(0.95rem, 0.5rem + 2vw, 2.4rem)",
+                  sm: "0.9375rem",
+                }}
+                lineHeight="1.33"
+                letterSpacing="-0.31px"
                 color="darkThemeWhite"
                 fontWeight="700"
               >

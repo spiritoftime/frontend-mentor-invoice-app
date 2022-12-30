@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-const GobackButton = ({ ml }) => {
+const GobackButton = ({ ml = "0" }) => {
   const navigate = useNavigate();
   return (
     <Button
