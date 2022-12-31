@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/frontend-mentor-invoice-app/static/css/main.d1761136.css",
-    "main.js": "/frontend-mentor-invoice-app/static/js/main.841b509a.js",
+    "main.css": "/frontend-mentor-invoice-app/static/css/main.7298fd80.css",
+    "main.js": "/frontend-mentor-invoice-app/static/js/main.f9f37aa5.js",
     "static/js/787.28cb0dcd.chunk.js": "/frontend-mentor-invoice-app/static/js/787.28cb0dcd.chunk.js",
     "index.html": "/frontend-mentor-invoice-app/index.html",
-    "main.d1761136.css.map": "/frontend-mentor-invoice-app/static/css/main.d1761136.css.map",
-    "main.841b509a.js.map": "/frontend-mentor-invoice-app/static/js/main.841b509a.js.map",
+    "main.7298fd80.css.map": "/frontend-mentor-invoice-app/static/css/main.7298fd80.css.map",
+    "main.f9f37aa5.js.map": "/frontend-mentor-invoice-app/static/js/main.f9f37aa5.js.map",
     "787.28cb0dcd.chunk.js.map": "/frontend-mentor-invoice-app/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d1761136.css",
-    "static/js/main.841b509a.js"
+    "static/css/main.7298fd80.css",
+    "static/js/main.f9f37aa5.js"
   ]
 }
