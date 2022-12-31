@@ -86,9 +86,9 @@ const EditInvoice = () => {
     const itemNumber = itemArticles.at(-1).split(" ")[1];
     setItemArticles((prevstate) => [...prevstate, `item ${+itemNumber + 1}`]);
   };
-
+  const theme = useSelector((state) => state.theme.isLight);
   return (
-    <Box minHeight="100vh" bg="darkThemeBg">
+    <Box minHeight="100vh" bg={!theme ? "darkThemeBg" : "white"}>
       <Box margin="0 auto" width={{ sm: "616px", md: "720px" }}>
         <GobackButton ml="18px"></GobackButton>
         <Flex
@@ -101,7 +101,7 @@ const EditInvoice = () => {
           paddingLeft={6}
           paddingTop={6}
         >
-          <Text color="darkThemeWhite">
+          <Text color={!theme ? "darkThemeWhite" : "#0C0E16"}>
             Edit{" "}
             <Text color="hashColor" as="span">
               #
@@ -151,7 +151,8 @@ const EditInvoice = () => {
                 height="48px"
                 variant="solid"
                 color="darkThemeGrey"
-                bg="#1E2139"
+                bg={!theme ? "#1E2139" : " rgba(249, 250, 254, 1)"}
+                border={!theme ? "0px" : "1px solid rgba(200, 227, 250, 1)"}
                 fontSize="0.75rem"
                 fontWeight="700"
                 lineHeight="0.9rem"
@@ -164,7 +165,11 @@ const EditInvoice = () => {
               bottom="-82px"
               left="0"
               width="100%"
-              backgroundColor={{ base: "darkThemeInput", sm: "darkThemeBg" }}
+              backgroundColor={
+                !theme
+                  ? { base: "darkThemeInput", sm: "darkThemeBg" }
+                  : "#FFFFFF"
+              }
               margin="0 auto"
               justify="end"
             >
@@ -175,14 +180,18 @@ const EditInvoice = () => {
               >
                 <FooterButton
                   onClick={onOpen}
+                  hover={{ background: "#3b3e58", color: "white" }}
                   color="#252945"
                   text="Cancel"
                 ></FooterButton>
                 <Modal isOpen={isOpen} onClose={onClose}>
                   <ModalOverlay />
-                  <ModalContent width="90%" background="darkThemeInput">
+                  <ModalContent
+                    width="90%"
+                    background={!theme ? "darkThemeInput" : "#FFFFFF"}
+                  >
                     <ModalHeader
-                      color="darkThemeWhite"
+                      color={!theme ? "darkThemeWhite" : "#0C0E16"}
                       fontSize="clamp(1.5rem, 0.9rem + 2vw, 1.6rem)"
                       fontWeight="700"
                       lineHeight="1.25"
@@ -192,7 +201,7 @@ const EditInvoice = () => {
                     <ModalCloseButton />
                     <ModalBody
                       fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-                      color="darkThemeGreyWhite"
+                      color={!theme ? "darkThemeGreyWhite" : "#888EB0"}
                       fontWeight="500"
                       lineHeight="1.4"
                     >
@@ -204,12 +213,14 @@ const EditInvoice = () => {
                       <FooterButton
                         onClick={onClose}
                         color="#252945"
+                        hover={{ background: "#3b3e58", color: "white" }}
                         text="Cancel"
                       ></FooterButton>
                       <FooterButton
                         onClick={async () => {
                           navigate("/invoices");
                         }}
+                        hover={{ background: "#FF9797", color: "white" }}
                         color="#EC5757"
                         text="Discard"
                       ></FooterButton>
@@ -218,6 +229,10 @@ const EditInvoice = () => {
                 </Modal>
 
                 <FooterButton
+                  hover={{
+                    background: "#9277FF",
+                    color: "white",
+                  }}
                   type="submit"
                   color="#7C5DFA"
                   text="Save Changes"

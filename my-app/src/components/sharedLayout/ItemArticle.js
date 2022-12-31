@@ -1,8 +1,9 @@
 import React from "react";
 import FormInput from "./FormInput";
 import { Grid, GridItem } from "@chakra-ui/react";
-
+import { useSelector } from "react-redux";
 const ItemArticle = ({ id, itemArticles, setItemArticles }) => {
+  const theme = useSelector((state) => state.theme.isLight);
   return (
     <Grid
       alignContent="center"

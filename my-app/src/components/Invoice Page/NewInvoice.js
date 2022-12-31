@@ -32,6 +32,7 @@ const NewInvoice = () => {
   const navigate = useNavigate();
   const collectionRef = collection(database, "users", userUID, "invoices");
   const methods = useForm();
+  const theme = useSelector((state) => state.theme.isLight);
   const { handleSubmit } = methods;
   const [itemArticles, setItemArticles] = useState(["item 1"]);
   const addItem = () => {
@@ -40,7 +41,7 @@ const NewInvoice = () => {
   };
 
   return (
-    <Box bg="darkThemeBg" minHeight="100vh">
+    <Box bg={!theme ? "darkThemeBg" : "white"} minHeight="100vh">
       <Box margin="0 auto" width={{ sm: "616px", md: "720px" }}>
         <GobackButton ml="24px"></GobackButton>
         <Flex
@@ -53,7 +54,7 @@ const NewInvoice = () => {
           paddingLeft={6}
           paddingTop={6}
         >
-          <Text color="darkThemeWhite">New Invoice</Text>
+          <Text color={!theme ? "darkThemeWhite" : "#0C0E16"}>New Invoice</Text>
         </Flex>
         <FormProvider {...methods}>
           <Box as="form">
@@ -86,9 +87,11 @@ const NewInvoice = () => {
                 borderRadius="30px"
                 width="min(100%, 327px)"
                 height="48px"
+                hover={{ background: "#3b3e58", color: "white" }}
                 variant="solid"
                 color="darkThemeGrey"
-                bg="#1E2139"
+                bg={!theme ? "#1E2139" : " rgba(249, 250, 254, 1)"}
+                border={!theme ? "0px" : "1px solid rgba(200, 227, 250, 1)"}
                 fontSize="0.75rem"
                 fontWeight="700"
                 lineHeight="0.9rem"
@@ -97,7 +100,11 @@ const NewInvoice = () => {
               </Button>
             </Stack>
             <Flex
-              backgroundColor={{ base: "darkThemeInput", sm: "darkThemeBg" }}
+              backgroundColor={
+                !theme
+                  ? { base: "darkThemeInput", sm: "darkThemeBg" }
+                  : "#FFFFFF"
+              }
               position={{ base: "relative", sm: "initial" }}
               bottom="-82px"
               left="0"
@@ -113,13 +120,17 @@ const NewInvoice = () => {
                 <FooterButton
                   onClick={onOpen}
                   color="#252945"
+                  hover={{ background: "#3b3e58", color: "white" }}
                   text="Discard"
                 ></FooterButton>
                 <Modal isOpen={isOpen} onClose={onClose}>
                   <ModalOverlay />
-                  <ModalContent width="90%" background="darkThemeInput">
+                  <ModalContent
+                    width="90%"
+                    background={!theme ? "darkThemeInput" : "#FFFFFF"}
+                  >
                     <ModalHeader
-                      color="darkThemeWhite"
+                      color={!theme ? "darkThemeWhite" : "#0C0E16"}
                       fontSize="clamp(1.5rem, 0.9rem + 2vw, 1.6rem)"
                       fontWeight="700"
                       lineHeight="1.25"
@@ -129,7 +140,7 @@ const NewInvoice = () => {
                     <ModalCloseButton />
                     <ModalBody
                       fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-                      color="darkThemeGreyWhite"
+                      color={!theme ? "darkThemeGreyWhite" : "#888EB0"}
                       fontWeight="500"
                       lineHeight="1.4"
                     >
@@ -141,12 +152,14 @@ const NewInvoice = () => {
                       <FooterButton
                         onClick={onClose}
                         color="#252945"
+                        hover={{ background: "#3b3e58", color: "white" }}
                         text="Cancel"
                       ></FooterButton>
                       <FooterButton
                         onClick={async () => {
                           navigate("/invoices");
                         }}
+                        hover={{ background: "#FF9797", color: "white" }}
                         color="#EC5757"
                         text="Discard"
                       ></FooterButton>
@@ -156,6 +169,7 @@ const NewInvoice = () => {
                 <FooterButton
                   type="submit"
                   color="#373B53"
+                  hover={{ background: "#3b3e58", color: "white" }}
                   onClick={handleSubmit((data) => {
                     const invoiceObj = createInvoiceObj(data);
                     invoiceObj.status = "Draft";
@@ -170,6 +184,10 @@ const NewInvoice = () => {
                     addDoc(collectionRef, invoiceObj);
                     navigate("/invoices");
                   })}
+                  hover={{
+                    background: "#9277FF",
+                    color: "white",
+                  }}
                   type="submit"
                   color="#7C5DFA"
                   text="Save & Send"

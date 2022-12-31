@@ -2,7 +2,9 @@ import React from "react";
 import FormInput from "./FormInput";
 import FormSelect from "./FormSelect";
 import { Box, Text, Grid, GridItem, FormLabel } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 const BillTo = () => {
+  const theme = useSelector((state) => state.theme.isLight);
   return (
     <Box width="100%" display="flex" flexDirection="column" gap={6}>
       <Text

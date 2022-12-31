@@ -1,7 +1,9 @@
 import React from "react";
 import FormInput from "./FormInput";
 import { Box, Text, Grid, GridItem } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 const BillFrom = () => {
+  const theme = useSelector((state) => state.theme.isLight);
   return (
     <Box width="100%" display="flex" flexDirection="column" gap={6}>
       <Text

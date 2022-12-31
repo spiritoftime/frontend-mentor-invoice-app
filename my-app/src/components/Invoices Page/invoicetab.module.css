@@ -1,6 +1,12 @@
-select > option {
+select > .option {
   background: #252945 !important;
   font-weight: 700 !important ;
   font-size: 0.75rem;
   line-height: 1.2 !important;
+  color: #ffffff !important;
+}
+select > .light-option {
+  background-color: #fff !important;
+  font-weight: 700 !important ;
+  color: #0c0e16 !important ;
 }

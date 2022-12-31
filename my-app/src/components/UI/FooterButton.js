@@ -1,8 +1,11 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 const FooterButton = (props) => {
+  const theme = useSelector((state) => state.theme.isLight);
   return (
     <Button
+      _hover={props.hover}
       type={props.type}
       onClick={props.onClick}
       borderRadius="30px"

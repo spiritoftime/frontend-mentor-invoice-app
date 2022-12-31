@@ -15,6 +15,7 @@ import useCreateUserDocument from "../custom-hooks/useCreateUserDocument";
 let displayedInvoices = [];
 const Invoices = () => {
   const { pathname } = useLocation();
+  const theme = useSelector((state) => state.theme.isLight);
   const uid = useSelector((state) => state.Login.uid);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -65,7 +66,7 @@ const Invoices = () => {
       direction="column"
       padding="32px 0"
       as="section"
-      bg="darkThemeBg"
+      bg={!theme ? "darkThemeBg" : "#fff"}
     >
       <InvoiceTab></InvoiceTab>
       {isLoading && <p>Loading....</p>}

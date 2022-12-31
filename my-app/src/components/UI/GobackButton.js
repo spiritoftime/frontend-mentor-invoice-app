@@ -1,10 +1,17 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const GobackButton = ({ ml = "0" }) => {
+  const theme = useSelector((state) => state.theme.isLight);
   const navigate = useNavigate();
+  let hoverObj = { background: "darkThemeBg", color: "white" };
+  if (theme) {
+    hoverObj = { background: "white", color: "#7E88C3" };
+  }
   return (
     <Button
+      _hover={hoverObj}
       onClick={() => {
         navigate("/invoices");
       }}
@@ -12,7 +19,7 @@ const GobackButton = ({ ml = "0" }) => {
       width="81px"
       height="15px"
       background="none"
-      color="darkThemeWhite"
+      color={!theme ? "darkThemeWhite" : "#7E88C3"}
       leftIcon={
         <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
           <path

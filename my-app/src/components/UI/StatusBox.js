@@ -1,7 +1,9 @@
 import React, { useRef, useEffect } from "react";
 import { Card, Text, Box, CardBody } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 import classes from "./statusbox.module.css";
 const StatusBox = (props) => {
+  const theme = useSelector((state) => state.theme.isLight);
   const ref = useRef();
   useEffect(() => {
     ref.current.style.setProperty("--color", props.color);

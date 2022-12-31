@@ -1,34 +1,26 @@
 import React from "react";
-import {
-  Button,
-  Card,
-  CardHeader,
-  Text,
-  Stack,
-  Flex,
-  Heading,
-  CardBody,
-  CardFooter,
-} from "@chakra-ui/react";
+import { Button, Card, CardHeader, Flex, Heading } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { LoginActions } from "../../redux-store/login-slice";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const theme = useSelector((state) => state.theme.isLight);
   let auth = getAuth();
   let googleProvider = new GoogleAuthProvider();
 
   return (
     <Flex
-      minHeight="calc(100vh - 72px)"
+      minHeight="100vh"
       backgroundColor="darkThemeGrey"
       justify="center"
       align="center"
     >
       <Card
-        minWidth="90%"
+        width={{ base: "80%", sm: "600px" }}
         minHeight="25vh"
         boxShadow="md"
         backgroundColor="whiteAlpha.900"

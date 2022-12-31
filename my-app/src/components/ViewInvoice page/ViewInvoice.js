@@ -8,6 +8,7 @@ import convertSecondsToDate from "../helper-functions/convertSecondsToDate";
 import {
   ButtonGroup,
   Text,
+  Card,
   Flex,
   Grid,
   GridItem,
@@ -27,6 +28,8 @@ import { useNavigate } from "react-router-dom";
 import useViewPort from "../custom-hooks/useViewPort";
 const ViewInvoice = () => {
   const width = useViewPort();
+  const theme = useSelector((state) => state.theme.isLight);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { invoiceId } = useParams();
@@ -58,7 +61,7 @@ const ViewInvoice = () => {
       gap="6px"
       direction="column"
       minBlockSize="100vh"
-      bg="darkThemeBg"
+      bg={!theme ? "darkThemeBg" : "white"}
     >
       <Flex justify="center" width={{ base: "100%", sm: "688px" }}>
         <Flex width={{ base: "90%", sm: "688px" }}>
@@ -66,7 +69,10 @@ const ViewInvoice = () => {
         </Flex>
       </Flex>
 
-      <Flex
+      <Card
+        position="static"
+        display="flex"
+        flexDirection="row"
         borderRadius="8px"
         padding="0 24px"
         alignItems="center"
@@ -74,7 +80,7 @@ const ViewInvoice = () => {
         margin="32px auto 0 "
         height="95px"
         width={{ base: "90%", sm: "688px" }}
-        bg="darkThemeInput"
+        bg={!theme ? "darkThemeInput" : "white"}
         justify="space-between"
       >
         <Text
@@ -103,7 +109,7 @@ const ViewInvoice = () => {
           bottom="-56px"
           left="0"
           width={{ base: "100%", sm: "initial" }}
-          backgroundColor="darkThemeInput"
+          backgroundColor={!theme ? "darkThemeInput" : "white"}
           margin={{ base: "0 auto", sm: "0 0 0 auto" }}
           justify={{ base: "center", sm: "flex-end" }}
         >
@@ -117,18 +123,20 @@ const ViewInvoice = () => {
                 navigate(`/invoices/edit/${invoiceId}`);
               }}
               color="#252945"
+              hover={{ background: "#3b3e58", color: "white" }}
               text="Edit"
             ></FooterButton>
             <FooterButton
+              hover={{ background: "#FF9797", color: "white" }}
               color="#EC5757"
               text="Delete"
               onClick={onOpen}
             ></FooterButton>
             <Modal isOpen={isOpen} onClose={onClose}>
               <ModalOverlay />
-              <ModalContent background="darkThemeInput">
+              <ModalContent background={!theme ? "darkThemeInput" : "#FFFFFF"}>
                 <ModalHeader
-                  color="darkThemeWhite"
+                  color={!theme ? "darkThemeWhite" : "#0C0E16"}
                   fontSize="clamp(1.5rem, 0.9rem + 2vw, 1.6rem)"
                   fontWeight="700"
                   lineHeight="1.25"
@@ -138,7 +146,7 @@ const ViewInvoice = () => {
                 <ModalCloseButton />
                 <ModalBody
                   fontSize="clamp(0.65rem, 0.4rem + 2vw, 1.6rem)"
-                  color="darkThemeGreyWhite"
+                  color={!theme ? "darkThemeGreyWhite" : "#7E88C3"}
                   fontWeight="500"
                   lineHeight="1.4"
                 >
@@ -148,11 +156,13 @@ const ViewInvoice = () => {
 
                 <ModalFooter gap={2}>
                   <FooterButton
+                    hover={{ background: "#DFE3FA", color: "white" }}
                     onClick={onClose}
                     color="#252945"
                     text="Cancel"
                   ></FooterButton>
                   <FooterButton
+                    hover={{ background: "#FF9797", color: "white" }}
                     onClick={async () => {
                       await deleteDoc(docRef);
                       navigate("/invoices");
@@ -164,6 +174,10 @@ const ViewInvoice = () => {
               </ModalContent>
             </Modal>
             <FooterButton
+              hover={{
+                background: "#9277FF",
+                color: "white",
+              }}
               onClick={() => {
                 setDoc(docRef, { status: "Paid" }, { merge: true });
                 navigate("/invoices");
@@ -173,16 +187,18 @@ const ViewInvoice = () => {
             ></FooterButton>
           </ButtonGroup>
         </Flex>
-      </Flex>
-      <Flex
-        direction="column"
+      </Card>
+      <Card
+        position="static"
+        display="flex"
+        flexDirection="column"
         borderRadius="8px"
         padding={{ base: "24px 24px 0", sm: "32px 32px 0" }}
         alignItems="start"
         color="darkThemeGrey"
         margin="0 auto 82px"
         width={{ base: "90%", sm: "688px" }}
-        bg="darkThemeInput"
+        bg={!theme ? "darkThemeInput" : "white"}
       >
         <Flex width="100%" direction="column" gap={6}>
           <Flex
@@ -204,7 +220,10 @@ const ViewInvoice = () => {
                 alignItems="center"
               >
                 <Text color="hashColor">#</Text>
-                <Text color="darkThemeWhite" fontWeight="700">
+                <Text
+                  color={!theme ? "darkThemeWhite" : "#0C0E16"}
+                  fontWeight="700"
+                >
                   {queriedInvoice.id}
                 </Text>
               </GridItem>
@@ -215,7 +234,7 @@ const ViewInvoice = () => {
                 }}
                 lineHeight="1.25"
                 letterSpacing="-0.25px"
-                color="darkThemeGreyWhite"
+                color={!theme ? "darkThemeGreyWhite" : "#7E88C3"}
                 fontWeight="500"
               >
                 {queriedInvoice.billTo.invoice.description}
@@ -226,7 +245,7 @@ const ViewInvoice = () => {
               fontSize="0.6875rem"
               fontWeight="500"
               lineHeight="1.6"
-              color="darkThemeGreyWhite"
+              color={!theme ? "darkThemeGreyWhite" : "#7E88C3"}
               width={{ base: "60%", sm: "fit-content" }}
               direction="column"
               letterSpacing="-0.23px"
@@ -253,7 +272,7 @@ const ViewInvoice = () => {
                 <Text
                   marginBottom={{ base: "0px", sm: "12px" }}
                   fontWeight="500"
-                  color="darkThemeGreyWhite"
+                  color={!theme ? "darkThemeGreyWhite" : "#7E88C3"}
                 >
                   Invoice Date
                 </Text>
@@ -261,7 +280,7 @@ const ViewInvoice = () => {
                   fontSize="0.9375rem"
                   lineHeight="1.33"
                   letterSpacing="-0.31px"
-                  color="darkThemeWhite"
+                  color={!theme ? "darkThemeWhite" : "#0C0E16"}
                   fontWeight="700"
                 >
                   {queriedInvoice.billTo.invoice.date}
@@ -270,7 +289,7 @@ const ViewInvoice = () => {
               <GridItem rowStart={2}>
                 <Text
                   marginBottom={{ base: "0px", sm: "12px" }}
-                  color="darkThemeGreyWhite"
+                  color={!theme ? "darkThemeGreyWhite" : "#7E88C3"}
                   fontWeight="500"
                 >
                   Payment Due
@@ -279,7 +298,7 @@ const ViewInvoice = () => {
                   fontSize="0.9375rem"
                   lineHeight="1.33"
                   letterSpacing="-0.31px"
-                  color="darkThemeWhite"
+                  color={!theme ? "darkThemeWhite" : "#0C0E16"}
                   fontWeight="700"
                 >
                   {queriedInvoice.billTo.invoice.paymentDue}
@@ -288,7 +307,7 @@ const ViewInvoice = () => {
               <GridItem rowSpan={2}>
                 <Text
                   marginBottom={{ base: "0px", sm: "12px" }}
-                  color="darkThemeGreyWhite"
+                  color={!theme ? "darkThemeGreyWhite" : "#7E88C3"}
                   fontWeight="500"
                 >
                   Bill To
@@ -297,7 +316,7 @@ const ViewInvoice = () => {
                   fontSize="0.9375rem"
                   lineHeight="1.33"
                   letterSpacing="-0.31px"
-                  color="darkThemeWhite"
+                  color={!theme ? "darkThemeWhite" : "#0C0E16"}
                   fontWeight="700"
                   marginBottom={{ base: "8px", sm: "12px" }}
                 >
@@ -307,7 +326,7 @@ const ViewInvoice = () => {
                   fontSize="0.6875rem"
                   fontWeight="500"
                   lineHeight="1.6"
-                  color="darkThemeGreyWhite"
+                  color={!theme ? "darkThemeGreyWhite" : "#7E88C3"}
                   direction="column"
                 >
                   <Text>{queriedInvoice.billTo.addressDetails.address}</Text>
@@ -326,7 +345,7 @@ const ViewInvoice = () => {
                 lineHeight="1.25"
                 letterSpacing="-0.25px"
                 marginBottom={{ base: "8px", sm: "12px" }}
-                color="darkThemeGreyWhite"
+                color={!theme ? "darkThemeGreyWhite" : "#7E88C3"}
                 fontWeight="500"
                 direction="column"
               >
@@ -336,7 +355,7 @@ const ViewInvoice = () => {
                 fontSize="0.9375rem"
                 lineHeight="1.33"
                 letterSpacing="-0.31px"
-                color="darkThemeWhite"
+                color={!theme ? "darkThemeWhite" : "#0C0E16"}
                 fontWeight="700"
               >
                 {queriedInvoice.billTo.clientEmail}
@@ -356,7 +375,7 @@ const ViewInvoice = () => {
             margin="0 auto"
             width="100%"
             padding="24px 24px"
-            backgroundColor="rgba(37, 41, 69, 1)"
+            backgroundColor={!theme ? "rgba(37, 41, 69, 1)" : "#F9FAFE"}
           >
             <Grid width="100%" rowGap={8}>
               {width < 768 ? (
@@ -404,7 +423,7 @@ const ViewInvoice = () => {
                 return (
                   <GridItem key={idx}>
                     <Flex
-                      color="darkThemeWhite"
+                      color={!theme ? "darkThemeWhite" : "#7E88C3"}
                       fontSize="0.75rem"
                       lineHeight="1.25"
                       fontWeight="700"
@@ -412,10 +431,14 @@ const ViewInvoice = () => {
                       align="center"
                       justify="space-between"
                     >
-                      <Text>{key}</Text>
+                      <Text color={!theme ? "darkThemeWhite" : "#0C0E16"}>
+                        {key}
+                      </Text>
                       <Text>{queriedInvoice.itemList.items[key].qty}</Text>
                       <Text>{queriedInvoice.itemList.items[key].price}</Text>
-                      <Text>£ {queriedInvoice.itemList.items[key].total}</Text>
+                      <Text color={!theme ? "darkThemeWhite" : "#0C0E16"}>
+                        £ {queriedInvoice.itemList.items[key].total}
+                      </Text>
                     </Flex>
                   </GridItem>
                 );
@@ -433,7 +456,7 @@ const ViewInvoice = () => {
             <Flex width="100%" align="center" justify="space-between">
               <Text
                 fontSize="11px"
-                color="darkThemeGreyWhite"
+                color={!theme ? "darkThemeGreyWhite" : "#7E88C3"}
                 fontWeight="500"
                 lineHeight="1.636"
               >
@@ -450,7 +473,7 @@ const ViewInvoice = () => {
             </Flex>
           </Flex>
         </Flex>
-      </Flex>
+      </Card>
     </Flex>
   );
 };

@@ -13,18 +13,20 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate, useParams } from "react-router-dom";
 import StatusBox from "../UI/StatusBox";
+import { useSelector } from "react-redux";
 const Invoice = (props) => {
   const navigate = useNavigate();
-
+  const theme = useSelector((state) => state.theme.isLight);
   return (
     <Card
+      _hover={{ cursor: "pointer" }}
       width={{ base: "90%", sm: "672px", "2xl": "730px" }}
       onClick={() => {
         navigate(`/invoices/${props.docId}`);
       }}
       color="white"
       margin="0 auto"
-      bg="darkThemeInput"
+      bg={!theme ? "darkThemeInput" : "#fff"}
     >
       <CardBody>
         <Grid
@@ -38,7 +40,10 @@ const Invoice = (props) => {
         >
           <GridItem display="flex" justify="center" alignItems="center">
             <Text color="hashColor">#</Text>
-            <Text color="darkThemeWhite" fontWeight="700">
+            <Text
+              color={!theme ? "darkThemeWhite" : "#0C0E16"}
+              fontWeight="700"
+            >
               {props.id}
             </Text>
           </GridItem>
@@ -65,7 +70,7 @@ const Invoice = (props) => {
                 fontSize="1rem"
                 letterSpacing="-0.8px"
                 lineHeight="1.5"
-                color="white"
+                color={!theme ? "White" : "#0C0E16"}
                 fontWeight="700"
               >
                 £ {props.grandTotal.toFixed(2)}

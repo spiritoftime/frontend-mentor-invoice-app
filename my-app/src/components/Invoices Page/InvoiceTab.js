@@ -1,22 +1,12 @@
 import React from "react";
-import {
-  Button,
-  Flex,
-  Spacer,
-  Box,
-  Stack,
-  HStack,
-  Text,
-  Select,
-  Icon,
-  Checkbox,
-} from "@chakra-ui/react";
+import { Button, Flex, Box, Text, Select, Icon } from "@chakra-ui/react";
 import classes from "./invoicetab.module.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { invoiceActions } from "../../redux-store/invoice-slice";
 import useViewPort from "../custom-hooks/useViewPort";
 const InvoiceTab = () => {
+  const theme = useSelector((state) => state.theme.isLight);
   const { invoices, filteredInvoices, filteredBy } = useSelector(
     (state) => state.invoice
   );
@@ -35,7 +25,11 @@ const InvoiceTab = () => {
       height="44px"
     >
       <Flex direction="column">
-        <Text fontSize="1.25rem" color="white" fontWeight="700">
+        <Text
+          fontSize="1.25rem"
+          color={!theme ? "white" : "#0C0E16"}
+          fontWeight="700"
+        >
           Invoices
         </Text>
         <Text
@@ -58,29 +52,45 @@ const InvoiceTab = () => {
             onChange={(e) => {
               dispatch(invoiceActions.filterInvoices(e.target.value));
             }}
-            border="none"
+            border="0px"
             iconColor="rgba(124, 93, 250, 1)"
-            color="darkThemeWhite"
+            color={!theme ? "darkThemeWhite" : "#0c0e16 "}
             fontWeight="700"
             fontSize="0.75rem"
             lineHeight="0.9rem"
           >
-            <option className={classes["option"]} value="Filter">
+            <option
+              className={!theme ? classes["option"] : classes["light-option"]}
+              value="Filter"
+            >
               {width < 768 ? "Filter" : "Filter By Status"}
             </option>
-            <option className={classes["option"]} value="Draft">
+            <option
+              className={!theme ? classes["option"] : classes["light-option"]}
+              value="Draft"
+            >
               Draft
             </option>
-            <option className={classes["option"]} value="Pending">
+            <option
+              className={!theme ? classes["option"] : classes["light-option"]}
+              value="Pending"
+            >
               Pending
             </option>
-            <option className={classes["option"]} value="Paid">
+            <option
+              className={!theme ? classes["option"] : classes["light-option"]}
+              value="Paid"
+            >
               Paid
             </option>
           </Select>
         </Flex>
 
         <Button
+          _hover={{
+            background: "#9277FF",
+            color: "white",
+          }}
           borderRadius="30px"
           onClick={redirectRouteHandler}
           backgroundColor="#7C5DFA"
