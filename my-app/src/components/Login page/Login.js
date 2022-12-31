@@ -20,9 +20,10 @@ const Login = () => {
       align="center"
     >
       <Card
-        width={{ base: "80%", sm: "600px" }}
-        minHeight="25vh"
+        width={{ base: "80%", sm: "400px" }}
+        height="max(50vh,200px)"
         boxShadow="md"
+        justify="center"
         backgroundColor="whiteAlpha.900"
         align="center"
       >
@@ -51,7 +52,7 @@ const Login = () => {
           }}
           justifyContent="center"
           borderRadius="30px"
-          width="min(100%, 327px)"
+          width="min(80%, 327px)"
           height="48px"
           variant="solid"
           color="darkThemeGrey"

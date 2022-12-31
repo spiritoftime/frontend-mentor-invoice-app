@@ -402,19 +402,27 @@ const ViewInvoice = () => {
                         fontSize="0.75rem"
                         lineHeight="1.25"
                         letterSpacing="-0.25px"
-                        color="darkThemeWhite"
+                        color={!theme ? "darkThemeWhite" : "#7E88C3"}
                         fontWeight="700"
                         align="center"
                         justify="space-between"
                       >
                         <Flex gap={2} direction="column">
-                          <Text direction="column">{key}</Text>
+                          <Text
+                            color={!theme ? "darkThemeWhite" : "#0C0E16"}
+                            direction="column"
+                          >
+                            {key}
+                          </Text>
                           <Text>
                             {queriedInvoice.itemList.items[key].qty} x £
                             {queriedInvoice.itemList.items[key].price}
                           </Text>
                         </Flex>
-                        <Text direction="column">
+                        <Text
+                          color={!theme ? "darkThemeWhite" : "#0C0E16"}
+                          direction="column"
+                        >
                           £{queriedInvoice.itemList.items[key].total}
                         </Text>
                       </Flex>
@@ -460,7 +468,7 @@ const ViewInvoice = () => {
                 fontWeight="500"
                 lineHeight="1.636"
               >
-                Amount Due
+                {width < 768 ? "Grand Total" : "Amount Due"}
               </Text>
               <Text
                 fontSize="1.25rem"
