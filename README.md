@@ -13,7 +13,7 @@ Deployed Site Link: https://spiritoftime.github.io/frontend-mentor-invoice-app/
 
 ### Some Challenges Faced
 (1) In js, empty arrays ARE TRUTHY!!
-[https://user-images.githubusercontent.com/98036884/208433326-11e73107-d414-44b0-9613-54899a50ffa7.PNG]
+[!image](https://user-images.githubusercontent.com/98036884/208433326-11e73107-d414-44b0-9613-54899a50ffa7.PNG)
 
 wasted 2hours because i used if(filteredInvoices). This may have worked in python but in js empty arrays are truthy.
 
