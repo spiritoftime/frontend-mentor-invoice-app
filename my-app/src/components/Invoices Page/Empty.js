@@ -1,6 +1,8 @@
 import React from "react";
 import { Box, Icon, Flex, Text } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 const Empty = () => {
+  const theme = useSelector((state) => state.theme.isLight);
   return (
     <Flex direction="column" margin="0 auto">
       <Icon margin="auto" height="160px" width="193px">
@@ -306,7 +308,7 @@ const Empty = () => {
           fontWeight="700"
           textAlign="center"
           lineHeight="1.1"
-          color="white"
+          color={!theme ? "white" : "#0C0E16"}
         >
           There is nothing here
         </Text>
@@ -316,7 +318,7 @@ const Empty = () => {
           fontSize="0.75rem"
           fontWeight="500"
           lineHeight="1.25"
-          color="rgba(223, 227, 250, 1)"
+          color={!theme ? "rgba(223, 227, 250, 1)" : "#888EB0"}
         >
           Create an invoice by clicking the New button and get started
         </Text>
