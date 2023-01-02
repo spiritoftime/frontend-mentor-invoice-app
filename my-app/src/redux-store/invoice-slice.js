@@ -13,11 +13,13 @@ const invoiceSlice = createSlice({
     },
     filterInvoices(state, action) {
       state.filteredInvoices = state.invoices.filter((invoice) => {
-        console.log(action.payload);
-        if (action.payload === "Filter") return state.invoices;
+        if (action.payload === "Filter") {
+          state.filteredBy = "";
+          return state.invoices;
+        }
+        state.filteredBy = action.payload;
         return invoice.status === action.payload;
       });
-      state.filteredBy = action.payload;
     },
     queryInvoice(state, action) {
       state.queriedInvoice = action.payload;

@@ -42,7 +42,7 @@ const InvoiceTab = () => {
           {filteredBy === ""
             ? invoices.length
             : filteredInvoices.length + " " + filteredBy}{" "}
-          {width < 768 ? "" : "total "}
+          {width < 768 ? "" : ""}
           invoices
         </Text>
       </Flex>
