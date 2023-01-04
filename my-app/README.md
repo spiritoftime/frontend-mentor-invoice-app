@@ -50,3 +50,4 @@ When i need to add a new invoice, i could just do addDoc(collectionRef, invoiceO
 (6) How to fix relative links when deploying to gitpages
 at app.js, i had to add /frontend-mentor-invoice-app/ to the first page. i realised that subsequent routes were also screwed.
 any way to fix this without having to manually add all the routes?
+EDIT: at browserRouter, add the basename to be equal to the relative path (in this case frontend-mentor-invoice-app).
